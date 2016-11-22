@@ -89,6 +89,22 @@ namespace iTrash.Models
         [Display(Name = "Last Name")]
         public string _LastName { get; set; }
 
+        [Required]
+        [Display(Name ="Street Address Line 1")]
+        public string _StreetAddress1 { get; set; }
+
+        [Display(Name = "Street Address Line 2")]
+        public string _StreetAddress2 { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string _City { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public int _StateID { get; set; }
+        public SelectList states { get; set; }
+
         [Display(Name = "Pickup day")]
         public int _dayID { get; set; }
         public SelectList days { get; set; }
