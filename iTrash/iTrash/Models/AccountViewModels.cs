@@ -80,6 +80,16 @@ namespace iTrash.Models
         [Display(Name = "Confirm password")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string _FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string _LastName { get; set; }
+
+        [Display(Name = "Pickup day")]
         public int _dayID { get; set; }
         public SelectList days { get; set; }
     }
