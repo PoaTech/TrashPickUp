@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201611221448380_Added the Dates table.Designer.cs">
       <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221454458_Add date tables.cs" />
+    <Compile Include="Migrations\201611221454458_Add date tables.Designer.cs">
+      <DependentUpon>201611221454458_Add date tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CalendarDay.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221448380_Added the Dates table.resx">
       <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221454458_Add date tables.resx">
+      <DependentUpon>201611221454458_Add date tables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
