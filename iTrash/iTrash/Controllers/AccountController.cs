@@ -142,7 +142,7 @@ namespace iTrash.Controllers
         {
             RegisterViewModel model = new RegisterViewModel();
             model.days = new SelectList(db.WeekDay, "_ID", "_Day");
-            return View();
+            return View(model);
         }
 
         //
