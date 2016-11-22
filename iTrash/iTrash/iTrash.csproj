@@ -223,14 +223,21 @@
     <Compile Include="Migrations\201611221427577_Adam%27s test.Designer.cs">
       <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221448380_Added the Dates table.cs" />
+    <Compile Include="Migrations\201611221448380_Added the Dates table.Designer.cs">
+      <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CalendarDay.cs" />
     <Compile Include="Models\CheckingAccount.cs" />
     <Compile Include="Models\Date.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Month.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
+    <Compile Include="Models\Year.cs" />
     <Compile Include="Models\Zipcode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -318,6 +325,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611221427577_Adam%27s test.resx">
       <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221448380_Added the Dates table.resx">
+      <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
