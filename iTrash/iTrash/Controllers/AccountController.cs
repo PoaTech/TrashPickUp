@@ -142,7 +142,9 @@ namespace iTrash.Controllers
         {
             RegisterViewModel model = new RegisterViewModel();
             model.days = new SelectList(db.WeekDay, "_ID", "_Day");
+            model.states = new SelectList(db.State, "_ID", "_State");
             return View(model);
+
         }
 
         //
@@ -154,7 +156,8 @@ namespace iTrash.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID };
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
