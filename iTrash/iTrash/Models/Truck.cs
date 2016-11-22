@@ -9,11 +9,14 @@ namespace iTrash.Models
 {
     public class Truck
     {
-        [Key]
-        public int _ID { get; set; }
-        public string _TruckNumber { get; set; }
-        [ForeignKey("zipcode")]
-        public int _Zipcode { get; set; }
-        public Zipcode zipcode { get; set; }
+        
+        
+            [Key]
+            public int _ID { get; set; }
+            public string _TruckNumber { get; set; }
+            [ForeignKey("zipcode")]
+            public int _Zipcode { get; set; }
+            public Zipcode zipcode { get; set; }
+        
     }
 }

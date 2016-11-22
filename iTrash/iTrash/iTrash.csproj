@@ -219,9 +219,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611212313050_Test.cs" />
-    <Compile Include="Migrations\201611212313050_Test.Designer.cs">
-      <DependentUpon>201611212313050_Test.cs</DependentUpon>
+    <Compile Include="Migrations\201611221427577_Adam%27s test.cs" />
+    <Compile Include="Migrations\201611221427577_Adam%27s test.Designer.cs">
+      <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -316,8 +316,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611212313050_Test.resx">
-      <DependentUpon>201611212313050_Test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611221427577_Adam%27s test.resx">
+      <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
