@@ -20,22 +20,22 @@ namespace iTrash.Models
         public string _FirstName { get; set; }
         public string _LastName { get; set; }
         [ForeignKey("address")]
-        public int _Address_ID { get; set; }
+        public int? _Address_ID { get; set; }
         public Address address { get; set; }
         [ForeignKey("billingInfo")]
-        public int _BillingInfo_ID { get; set; }
+        public int? _BillingInfo_ID { get; set; }
         public PaymentInfo billingInfo { get; set; }
         [ForeignKey("pickupDay")]
         public int _PickupDay_ID { get; set; }
         public WeekDay pickupDay { get; set; }
         [ForeignKey("altPickupDay")]
-        public int _AltPickupDay_ID { get; set; }
+        public int? _AltPickupDay_ID { get; set; }
         public WeekDay altPickupDay { get; set; }
         [ForeignKey("leaveDate")]
-        public int _LeaveDate_ID { get; set; }
+        public int? _LeaveDate_ID { get; set; }
         public Date leaveDate { get; set; }
         [ForeignKey("returnDate")]
-        public int _ReturnDate_ID { get; set; }
+        public int? _ReturnDate_ID { get; set; }
         public Date returnDate { get; set; }
     }
 
