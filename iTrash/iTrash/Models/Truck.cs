@@ -14,5 +14,6 @@ namespace iTrash.Models
         public string _TruckNumber { get; set; }
         [ForeignKey("Zipcode")]
         public int _Zipcode { get; set; }
+        public Zipcode zipcode { get; set; }
     }
 }
