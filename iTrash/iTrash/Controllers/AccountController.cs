@@ -154,7 +154,7 @@ namespace iTrash.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay = model._dayID};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
