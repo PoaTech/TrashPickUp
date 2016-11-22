@@ -219,21 +219,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611221453547_This worked last time.cs" />
-    <Compile Include="Migrations\201611221453547_This worked last time.Designer.cs">
-      <DependentUpon>201611221453547_This worked last time.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.cs" />
-    <Compile Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.Designer.cs">
-      <DependentUpon>201611221609124_TheGrandDatabasePopulationEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611221640149_AndNowForTheUsers.cs" />
-    <Compile Include="Migrations\201611221640149_AndNowForTheUsers.Designer.cs">
-      <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611221953567_The migration to repair AspNetUsers.cs" />
-    <Compile Include="Migrations\201611221953567_The migration to repair AspNetUsers.Designer.cs">
-      <DependentUpon>201611221953567_The migration to repair AspNetUsers.cs</DependentUpon>
+    <Compile Include="Migrations\201611222056115_New Server, New Push.cs" />
+    <Compile Include="Migrations\201611222056115_New Server, New Push.Designer.cs">
+      <DependentUpon>201611222056115_New Server, New Push.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -337,17 +325,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611221453547_This worked last time.resx">
-      <DependentUpon>201611221453547_This worked last time.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.resx">
-      <DependentUpon>201611221609124_TheGrandDatabasePopulationEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611221640149_AndNowForTheUsers.resx">
-      <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611221953567_The migration to repair AspNetUsers.resx">
-      <DependentUpon>201611221953567_The migration to repair AspNetUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611222056115_New Server, New Push.resx">
+      <DependentUpon>201611222056115_New Server, New Push.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -7,13 +7,13 @@ namespace iTrash.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Thisworkedlasttime : IMigrationMetadata
+    public sealed partial class NewServerNewPush : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Thisworkedlasttime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewServerNewPush));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611221453547_This worked last time"; }
+            get { return "201611222056115_New Server, New Push"; }
         }
         
         string IMigrationMetadata.Source
