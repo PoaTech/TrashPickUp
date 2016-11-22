@@ -7,13 +7,13 @@ namespace iTrash.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedtheDatestable : IMigrationMetadata
+    public sealed partial class Thisworkedlasttime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedtheDatestable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Thisworkedlasttime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611221448380_Added the Dates table"; }
+            get { return "201611221453547_This worked last time"; }
         }
         
         string IMigrationMetadata.Source

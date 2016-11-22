@@ -6,11 +6,10 @@ using System.Web;
 
 namespace iTrash.Models
 {
-    public class CheckingAccount
+    public class WeekDay
     {
         [Key]
         public int _ID { get; set; }
-        public int _RoutingNumber { get; set; }
-        public int _AccountNumber { get; set; }
+        public string _Day { get; set; }
     }
 }

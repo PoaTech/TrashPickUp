@@ -17,6 +17,26 @@ namespace iTrash.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public string _FirstName { get; set; }
+        public string _LastName { get; set; }
+        //[ForeignKey("address")]
+        public int _Address { get; set; }
+        public Address address { get; set; }
+        //[ForeignKey("billingInfo")]
+        public int _BillingInfo { get; set; }
+        public PaymentInfo billingInfo { get; set; }
+        //[ForeignKey("pickupDay")]
+        public int _PickupDay { get; set; }
+        public WeekDay pickupDay { get; set; }
+        //[ForeignKey("altPickupDay")]
+        public int _AltPickupDay { get; set; }
+        public WeekDay altPickupDay { get; set; }
+        //[ForeignKey("leaveDate")]
+        public int _LeaveDate { get; set; }
+        public Date leaveDate { get; set; }
+        //[ForeignKey("returnDate")]
+        public int _ReturnDate { get; set; }
+        public Date returnDate { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -32,5 +52,20 @@ namespace iTrash.Models
         }
 
         public DbSet<Truck> Truck { get; set; }
+        public DbSet<CalendarDay> CalendarDay { get; set; }
+        public DbSet<Month> Month { get; set; }
+        public DbSet<Year> Year { get; set; }
+        public DbSet<Date> Date { get; set; }
+        public DbSet<CheckingAccount> CheckingAccount { get; set; }
+        public DbSet<Zipcode> Zipcode { get; set; }
+        public DbSet<State> State { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Address> Address { get; set; }
+        public DbSet<CardType> CardType { get; set; }
+        public DbSet<ExpirationDate> ExpirationDate { get; set; }
+        public DbSet<PaymentInfo> PaymentInfo { get; set; }
+        public DbSet<CreditCard> CreditCard { get; set; }
+        public DbSet<WeekDay> WeekDay { get; set; }
+
     }
 }

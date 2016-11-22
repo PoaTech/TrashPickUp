@@ -7,13 +7,10 @@ using System.Web;
 
 namespace iTrash.Models
 {
-    public class Date
+    public class ExpirationDate
     {
         [Key]
         public int _ID { get; set; }
-        [ForeignKey("day")]
-        public int _Day { get; set; }
-        public CalendarDay day { get; set; }
         [ForeignKey("month")]
         public int _Month { get; set; }
         public Month month { get; set; }
