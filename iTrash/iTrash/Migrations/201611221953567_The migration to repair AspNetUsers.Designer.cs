@@ -7,13 +7,13 @@ namespace iTrash.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Adddatetables : IMigrationMetadata
+    public sealed partial class ThemigrationtorepairAspNetUsers : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Adddatetables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ThemigrationtorepairAspNetUsers));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611221454458_Add date tables"; }
+            get { return "201611221953567_The migration to repair AspNetUsers"; }
         }
         
         string IMigrationMetadata.Source

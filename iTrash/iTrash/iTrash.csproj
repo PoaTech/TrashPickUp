@@ -231,9 +231,9 @@
     <Compile Include="Migrations\201611221640149_AndNowForTheUsers.Designer.cs">
       <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611221454458_Add date tables.cs" />
-    <Compile Include="Migrations\201611221454458_Add date tables.Designer.cs">
-      <DependentUpon>201611221454458_Add date tables.cs</DependentUpon>
+    <Compile Include="Migrations\201611221953567_The migration to repair AspNetUsers.cs" />
+    <Compile Include="Migrations\201611221953567_The migration to repair AspNetUsers.Designer.cs">
+      <DependentUpon>201611221953567_The migration to repair AspNetUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -263,6 +263,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Trash-Can.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -323,9 +324,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -347,8 +346,8 @@
     <EmbeddedResource Include="Migrations\201611221640149_AndNowForTheUsers.resx">
       <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611221454458_Add date tables.resx">
-      <DependentUpon>201611221454458_Add date tables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611221953567_The migration to repair AspNetUsers.resx">
+      <DependentUpon>201611221953567_The migration to repair AspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

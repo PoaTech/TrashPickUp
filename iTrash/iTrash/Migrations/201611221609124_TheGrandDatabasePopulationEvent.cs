@@ -1,4 +1,4 @@
-namespace iTrash.Migrations
+ namespace iTrash.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
