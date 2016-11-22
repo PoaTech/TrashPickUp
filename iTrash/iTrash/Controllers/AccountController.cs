@@ -17,6 +17,7 @@ namespace iTrash.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -139,6 +140,8 @@ namespace iTrash.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            RegisterViewModel model = new RegisterViewModel();
+            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
             return View();
         }
 
