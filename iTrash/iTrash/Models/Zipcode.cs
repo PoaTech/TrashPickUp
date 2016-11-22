@@ -9,7 +9,7 @@ namespace iTrash.Models
     public class Zipcode
     {
         [Key]
-        public int ID { get; set; }
+        public int _ID { get; set; }
         public string _Zipcode { get; set; }
     }
 }
