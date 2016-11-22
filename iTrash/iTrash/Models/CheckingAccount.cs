@@ -6,10 +6,11 @@ using System.Web;
 
 namespace iTrash.Models
 {
-    public class Zipcode
+    public class CheckingAccount
     {
         [Key]
-        public int _ID { get; set; }
-        public string _Zipcode { get; set; }
+        public int _ID;
+        public int _RoutingNumber;
+        public int _AccountNumber;
     }
 }

@@ -6,10 +6,12 @@ using System.Web;
 
 namespace iTrash.Models
 {
-    public class Zipcode
+    public class Date
     {
         [Key]
-        public int _ID { get; set; }
-        public string _Zipcode { get; set; }
+        public int ID;
+        public int Day;
+        public int Month;
+        public int Year;
     }
 }
