@@ -219,13 +219,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611221427577_Adam%27s test.cs" />
-    <Compile Include="Migrations\201611221427577_Adam%27s test.Designer.cs">
-      <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
+    <Compile Include="Migrations\201611221453547_This worked last time.cs" />
+    <Compile Include="Migrations\201611221453547_This worked last time.Designer.cs">
+      <DependentUpon>201611221453547_This worked last time.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611221448380_Added the Dates table.cs" />
-    <Compile Include="Migrations\201611221448380_Added the Dates table.Designer.cs">
-      <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
+    <Compile Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.cs" />
+    <Compile Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.Designer.cs">
+      <DependentUpon>201611221609124_TheGrandDatabasePopulationEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611221640149_AndNowForTheUsers.cs" />
+    <Compile Include="Migrations\201611221640149_AndNowForTheUsers.Designer.cs">
+      <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201611221454458_Add date tables.cs" />
     <Compile Include="Migrations\201611221454458_Add date tables.Designer.cs">
@@ -233,14 +237,21 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\CalendarDay.cs" />
+    <Compile Include="Models\CardType.cs" />
     <Compile Include="Models\CheckingAccount.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Models\Date.cs" />
+    <Compile Include="Models\ExpirationDate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Month.cs" />
+    <Compile Include="Models\PaymentInfo.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
+    <Compile Include="Models\WeekDay.cs" />
     <Compile Include="Models\Year.cs" />
     <Compile Include="Models\Zipcode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -327,11 +338,14 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611221427577_Adam%27s test.resx">
-      <DependentUpon>201611221427577_Adam%27s test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611221453547_This worked last time.resx">
+      <DependentUpon>201611221453547_This worked last time.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611221448380_Added the Dates table.resx">
-      <DependentUpon>201611221448380_Added the Dates table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611221609124_TheGrandDatabasePopulationEvent.resx">
+      <DependentUpon>201611221609124_TheGrandDatabasePopulationEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221640149_AndNowForTheUsers.resx">
+      <DependentUpon>201611221640149_AndNowForTheUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221454458_Add date tables.resx">
       <DependentUpon>201611221454458_Add date tables.cs</DependentUpon>

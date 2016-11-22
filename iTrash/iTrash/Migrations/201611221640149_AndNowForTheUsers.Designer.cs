@@ -7,13 +7,13 @@ namespace iTrash.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Adamstest : IMigrationMetadata
+    public sealed partial class AndNowForTheUsers : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Adamstest));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AndNowForTheUsers));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611221427577_Adam's test"; }
+            get { return "201611221640149_AndNowForTheUsers"; }
         }
         
         string IMigrationMetadata.Source
