@@ -109,6 +109,7 @@ namespace iTrash.Models
         [Required]
         [Display(Name = "Zipcode")]
         public int _ZipcodeID { get; set; }
+        
 
         [Display(Name = "Pickup day")]
         public int _dayID { get; set; }

@@ -298,6 +298,11 @@ namespace iTrash.Controllers
                 OtherLogins = otherLogins
             });
         }
+        public ActionResult ChangeTrashCollectionSettings()
+        {
+            
+            return View();
+        } 
 
         //
         // POST: /Manage/LinkLogin
