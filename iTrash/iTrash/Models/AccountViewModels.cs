@@ -145,9 +145,13 @@ namespace iTrash.Models
     }
     public class AddressCreationModel
     {
+        private int cityID;
+        private int stateID;
+        private int zipcodeID;
         ApplicationDbContext db = new ApplicationDbContext();
         public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int zipcode)
         {
+            stateID = state;
             if (!CityExists(city, state))
             {
                 CreateCity(city, state);
@@ -156,27 +160,33 @@ namespace iTrash.Models
             {
                 CreateZipcode(zipcode);
             }
-            if (!AddressExists(addressLine1, addressLine2, city, state, zipcode))
+            cityID = GetCityID(city, state);
+            zipcodeID = GetZipcodeID(zipcode);
+            if (!AddressExists(addressLine1, addressLine2))
             {
-                CreateAddress(addressLine1, addressLine2, city, state, zipcode);
+                CreateAddress(addressLine1, addressLine2);
             }
-            var cityID = from a in db.City
-                         where a._City == city && a._State == state
-                         select a._ID;
-            var zipcodeID = from a in db.Zipcode
-                            where a._Zipcode == zipcode
-                            select a._ID;
-            var addressID = from a in db.Address
-                            where a._City == cityID.First<int>() && a._Zipcode == zipcodeID.First<int>() && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
-                            select a._ID;
-            return addressID.First<int>();
+            var query = (from a in db.Address
+                            where a._City == cityID && a._Zipcode == zipcodeID && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
+                            select new { a._ID }).Single();
+            int addressID = query._ID;
+            return addressID;
         }
         private bool CityExists(string city, int state)
         {
-            var cityID = from a in db.City
-                         where a._City == city && a._State == state
-                         select a;
-            return (cityID.First<City>() == null);
+            try
+            {
+                var query = (from a in db.City
+                             where a._City == city && a._State == state
+                             select new { a._City, a._State }).Single();
+                string _City = query._City;
+                int _State = query._State;
+                return ((city == _City) && (state == _State));
+            }
+            catch
+            {
+                return false;
+            }
         }
         private void CreateCity(string city, int state)
         {
@@ -184,47 +194,83 @@ namespace iTrash.Models
             newCity._City = city;
             newCity._State = state;
             db.City.Add(newCity);
+            db.SaveChanges();
         }
         private bool ZipcodeExists(int zipcode)
         {
-            var zipcodeID = from a in db.Zipcode
-                            where a._Zipcode == zipcode
-                            select a;
-            return (zipcodeID.First<Zipcode>() == null);
+            try
+            {
+                var query = (from a in db.Zipcode
+                                where a._Zipcode == zipcode
+                                select new { a._Zipcode }).Single();
+                int _Zipcode = query._Zipcode;
+                return (_Zipcode == zipcode);
+            }
+            catch
+            {
+                return false;
+            }
         }
         private void CreateZipcode(int zipcode)
         {
             var newZipcode = new Zipcode();
             newZipcode._Zipcode = zipcode;
             db.Zipcode.Add(newZipcode);
+            db.SaveChanges();
         }
-        private bool AddressExists(string addressLine1, string addressLine2, string city, int state, int zipcode)
+        private bool AddressExists(string addressLine1, string addressLine2)
         {
-            var cityID = from a in db.City
-                         where a._City == city && a._State == state
-                         select a._ID;
-            var zipcodeID = from a in db.Zipcode
-                            where a._Zipcode == zipcode
-                            select a._ID;
-            var addressID = from a in db.Address
-                            where a._City == cityID.First<int>() && a._Zipcode == zipcodeID.First<int>() && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
-                            select a;
-            return (addressID == null);
+            try
+            {
+                var addressID = from a in db.Address
+                                where a._City == cityID && a._Zipcode == zipcodeID && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
+                                select a;
+                return (addressID == null);
+            }
+            catch
+            {
+                return false;
+            }
         }
-        private void CreateAddress(string addressLine1, string addressLine2, string city, int state, int zipcode)
+        private void CreateAddress(string addressLine1, string addressLine2)
         {
-            var cityID = from a in db.City
-                         where a._City == city && a._State == state
-                         select a._ID;
-            var zipcodeID = from a in db.Zipcode
-                            where a._Zipcode == zipcode
-                            select a._ID;
             var newAddress = new Address();
             newAddress._StreetAddress1 = addressLine1;
             newAddress._StreetAddress2 = addressLine2;
-            newAddress._Zipcode = zipcodeID.First<int>();
-            newAddress._City = cityID.First<int>();
+            newAddress._Zipcode = zipcodeID;
+            newAddress._City = cityID;
             db.Address.Add(newAddress);
+            db.SaveChanges();
+        }
+        private int GetCityID(string city, int state)
+        {
+            try
+            {
+                var query = (from a in db.City
+                             where a._City == city && a._State == state
+                             select new { a._ID }).Single();
+                int _ID = query._ID;
+                return _ID;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        private int GetZipcodeID(int zipcode)
+        {
+            try
+            {
+                var query = (from a in db.Zipcode
+                             where a._Zipcode == zipcode
+                             select new { a._ID }).Single();
+                int _ID = query._ID;
+                return _ID;
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }
