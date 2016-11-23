@@ -176,7 +176,7 @@ namespace iTrash.Models
             var cityID = from a in db.City
                          where a._City == city && a._State == state
                          select a;
-            return (cityID == null);
+            return (cityID.First<City>() == null);
         }
         private void CreateCity(string city, int state)
         {
@@ -190,7 +190,7 @@ namespace iTrash.Models
             var zipcodeID = from a in db.Zipcode
                             where a._Zipcode == zipcode
                             select a;
-            return (zipcodeID == null);
+            return (zipcodeID.First<Zipcode>() == null);
         }
         private void CreateZipcode(int zipcode)
         {
