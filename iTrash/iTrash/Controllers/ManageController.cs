@@ -300,8 +300,10 @@ namespace iTrash.Controllers
         }
         public ActionResult ChangeTrashCollectionSettings()
         {
-            
-            return View();
+            ChangeTrashCollectionSettingsViewModel model = new ChangeTrashCollectionSettingsViewModel();
+            ApplicationDbContext db = new ApplicationDbContext();
+            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
+            return View(model);
         } 
 
         //
