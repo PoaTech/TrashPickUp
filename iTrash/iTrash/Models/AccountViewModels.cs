@@ -145,50 +145,60 @@ namespace iTrash.Models
     }
     public class AddressCreationModel
     {
-        public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        ApplicationDbContext db = new ApplicationDbContext();
+        public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int zipcode)
         {
-            if (!CityExists(city, state, db))
+            if (!CityExists(city, state))
             {
-                CreateCity(city, state, db);
+                CreateCity(city, state);
             }
-            if (!ZipcodeExists(zipcode, db))
+            if (!ZipcodeExists(zipcode))
             {
-                CreateZipcode(zipcode, db);
+                CreateZipcode(zipcode);
             }
-            if (!AddressExists(addressLine1, addressLine2, city, state, zipcode, db))
+            if (!AddressExists(addressLine1, addressLine2, city, state, zipcode))
             {
-                CreateAddress(addressLine1, addressLine2, city, state, zipcode, db);
+                CreateAddress(addressLine1, addressLine2, city, state, zipcode);
             }
-            return 1;
+            var cityID = from a in db.City
+                         where a._City == city && a._State == state
+                         select a._ID;
+            var zipcodeID = from a in db.Zipcode
+                            where a._Zipcode == zipcode
+                            select a._ID;
+            var addressID = from a in db.Address
+                            where a._City == cityID.First<int>() && a._Zipcode == zipcodeID.First<int>() && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
+                            select a._ID;
+            return addressID.First<int>();
         }
-        private bool CityExists(string city, int state, ApplicationDbContext db)
+        private bool CityExists(string city, int state)
         {
             var cityID = from a in db.City
                          where a._City == city && a._State == state
                          select a;
             return (cityID == null);
         }
-        private void CreateCity(string city, int state, ApplicationDbContext db)
+        private void CreateCity(string city, int state)
         {
             var newCity = new City();
             newCity._City = city;
             newCity._State = state;
             db.City.Add(newCity);
         }
-        private bool ZipcodeExists(int zipcode, ApplicationDbContext db)
+        private bool ZipcodeExists(int zipcode)
         {
             var zipcodeID = from a in db.Zipcode
                             where a._Zipcode == zipcode
                             select a;
             return (zipcodeID == null);
         }
-        private void CreateZipcode(int zipcode, ApplicationDbContext db)
+        private void CreateZipcode(int zipcode)
         {
             var newZipcode = new Zipcode();
             newZipcode._Zipcode = zipcode;
             db.Zipcode.Add(newZipcode);
         }
-        private bool AddressExists(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        private bool AddressExists(string addressLine1, string addressLine2, string city, int state, int zipcode)
         {
             var cityID = from a in db.City
                          where a._City == city && a._State == state
@@ -201,7 +211,7 @@ namespace iTrash.Models
                             select a;
             return (addressID == null);
         }
-        private void CreateAddress(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        private void CreateAddress(string addressLine1, string addressLine2, string city, int state, int zipcode)
         {
             var cityID = from a in db.City
                          where a._City == city && a._State == state
