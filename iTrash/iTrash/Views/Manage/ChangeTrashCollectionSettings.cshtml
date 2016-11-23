@@ -8,5 +8,11 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Change your trash collection settings</h4>
-
+    <h3>Your current trash pick up day</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m._dayID, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m._dayID, Model.days)
+        </div>
+    </div>
 </div>
