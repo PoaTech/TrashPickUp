@@ -222,10 +222,11 @@ namespace iTrash.Models
         {
             try
             {
-                var addressID = from a in db.Address
+                var query = (from a in db.Address
                                 where a._City == cityID && a._Zipcode == zipcodeID && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
-                                select a;
-                return (addressID == null);
+                                select new { a._ID }).Single();
+                int addressID = query._ID;
+                return (addressID > 0);
             }
             catch
             {
