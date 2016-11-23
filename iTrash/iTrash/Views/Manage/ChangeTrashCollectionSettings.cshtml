@@ -6,6 +6,9 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+@using (Html.BeginForm("SetPassword", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" })){
+}
+    @Html.AntiForgeryToken()
 <div>
     <h4>Change your trash collection settings</h4>
     <h3>Your current trash pick up day</h3>

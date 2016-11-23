@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.Mvc;
 
 namespace iTrash.Models
 {
@@ -23,7 +24,10 @@ namespace iTrash.Models
     public class ChangeTrashCollectionSettingsViewModel
     {
         
-        public IList<Address> CurrentAddress { get; set; }
+        
+        [Display(Name = "Pickup day")]
+        public int _dayID { get; set; }
+        public SelectList days { get; set; }
     }
 
     public class FactorViewModel
@@ -41,7 +45,7 @@ namespace iTrash.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -60,7 +64,7 @@ namespace iTrash.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
