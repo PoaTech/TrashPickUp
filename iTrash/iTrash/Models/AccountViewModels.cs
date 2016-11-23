@@ -108,7 +108,7 @@ namespace iTrash.Models
 
         [Required]
         [Display(Name = "Zipcode")]
-        public int _ZipcodeID { get; set; }
+        public int? _ZipcodeID { get; set; }
 
         
         
@@ -156,9 +156,18 @@ namespace iTrash.Models
         private int stateID;
         private int zipcodeID;
         ApplicationDbContext db = new ApplicationDbContext();
-        public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int zipcode)
+        public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int? zipcodeNullable)
         {
             stateID = state;
+            int zipcode;
+            if (zipcodeNullable == null)
+            {
+                return 0;
+            }
+            else
+            {
+                zipcode = (int)zipcodeNullable;
+            }
             if (!CityExists(city, state))
             {
                 CreateCity(city, state);

@@ -156,7 +156,6 @@ namespace iTrash.Controllers
         {
             if (ModelState.IsValid)
             {
-                ValidateZipcode(model._ZipcodeID);
                 AddressCreationModel addressCreator = new AddressCreationModel();
                 int addressID = addressCreator.GetAddressID (model._StreetAddress1, model._StreetAddress2, model._CityID, model._StateID, model._ZipcodeID);
 
@@ -489,15 +488,6 @@ namespace iTrash.Controllers
                     properties.Dictionary[XsrfKey] = UserId;
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
-            }
-        }
-        private void ValidateZipcode(int zipcode)
-        {
-            string zipcodeString = zipcode.ToString();
-            if (zipcode > 99999 || zipcode < 0 || zipcodeString.Length != 5)
-            {
-                IdentityResult error = IdentityResult.Failed("Invalid zipcode.");
-                AddErrors(error);
             }
         }
         #endregion
