@@ -10,6 +10,6 @@ namespace iTrash.Models
     {
         [Key]
         public int _ID { get; set; }
-        public string _Zipcode { get; set; }
+        public int _Zipcode { get; set; }
     }
 }

@@ -19,5 +19,6 @@ namespace iTrash.Models
         [ForeignKey("zipcode")]
         public int _Zipcode { get; set; }
         public Zipcode zipcode { get; set; }
+
     }
 }
