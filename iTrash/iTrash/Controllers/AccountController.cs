@@ -174,7 +174,9 @@ namespace iTrash.Controllers
                 }
                 AddErrors(result);
             }
-
+            
+            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
+            model.states = new SelectList(db.State, "_ID", "_State");
             // If we got this far, something failed, redisplay form
             return View(model);
         }
