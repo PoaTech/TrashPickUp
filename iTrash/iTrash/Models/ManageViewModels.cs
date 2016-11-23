@@ -19,6 +19,13 @@ namespace iTrash.Models
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
+    //Adam's work
+    public class ChangeTrashCollectionSettingsViewModel
+    {
+        public IList<UserLoginInfo> CurrentLogins { get; set; }
+        public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public IList<Address> CurrentAddress { get; set; }
+    }
 
     public class FactorViewModel
     {
