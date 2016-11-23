@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace iTrash.Models
 {
@@ -141,5 +142,79 @@ namespace iTrash.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    }
+    public class AddressCreationModel
+    {
+        public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        {
+            if (!CityExists(city, state, db))
+            {
+                CreateCity(city, state, db);
+            }
+            if (!ZipcodeExists(zipcode, db))
+            {
+                CreateZipcode(zipcode, db);
+            }
+            if (!AddressExists(addressLine1, addressLine2, city, state, zipcode, db))
+            {
+                CreateAddress(addressLine1, addressLine2, city, state, zipcode, db);
+            }
+            return 1;
+        }
+        private bool CityExists(string city, int state, ApplicationDbContext db)
+        {
+            var cityID = from a in db.City
+                         where a._City == city && a._State == state
+                         select a;
+            return (cityID == null);
+        }
+        private void CreateCity(string city, int state, ApplicationDbContext db)
+        {
+            var newCity = new City();
+            newCity._City = city;
+            newCity._State = state;
+            db.City.Add(newCity);
+        }
+        private bool ZipcodeExists(int zipcode, ApplicationDbContext db)
+        {
+            var zipcodeID = from a in db.Zipcode
+                            where a._Zipcode == zipcode
+                            select a;
+            return (zipcodeID == null);
+        }
+        private void CreateZipcode(int zipcode, ApplicationDbContext db)
+        {
+            var newZipcode = new Zipcode();
+            newZipcode._Zipcode = zipcode;
+            db.Zipcode.Add(newZipcode);
+        }
+        private bool AddressExists(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        {
+            var cityID = from a in db.City
+                         where a._City == city && a._State == state
+                         select a._ID;
+            var zipcodeID = from a in db.Zipcode
+                            where a._Zipcode == zipcode
+                            select a._ID;
+            var addressID = from a in db.Address
+                            where a._City == cityID.First<int>() && a._Zipcode == zipcodeID.First<int>() && a._StreetAddress1 == addressLine1 && a._StreetAddress2 == addressLine2
+                            select a;
+            return (addressID == null);
+        }
+        private void CreateAddress(string addressLine1, string addressLine2, string city, int state, int zipcode, ApplicationDbContext db)
+        {
+            var cityID = from a in db.City
+                         where a._City == city && a._State == state
+                         select a._ID;
+            var zipcodeID = from a in db.Zipcode
+                            where a._Zipcode == zipcode
+                            select a._ID;
+            var newAddress = new Address();
+            newAddress._StreetAddress1 = addressLine1;
+            newAddress._StreetAddress2 = addressLine2;
+            newAddress._Zipcode = zipcodeID.First<int>();
+            newAddress._City = cityID.First<int>();
+            db.Address.Add(newAddress);
+        }
     }
 }
