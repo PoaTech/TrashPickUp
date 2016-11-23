@@ -10,77 +10,88 @@
     @Html.AntiForgeryToken()
     <h4>You're just moments away from personalized garbage removal!</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m._FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m._FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m._FirstName)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._LastName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._LastName, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m._LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._LastName)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._StreetAddress1, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._StreetAddress1, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m._StreetAddress1, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._StreetAddress1)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._StreetAddress2, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._StreetAddress2, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m._StreetAddress2, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._StreetAddress2)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._CityID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._CityID, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m._CityID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._CityID)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._StateID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m._StateID, Model.states)
+                        @Html.DropDownListFor(m => m._StateID, Model.states, "Select State", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._StateID)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._ZipcodeID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._ZipcodeID, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m._ZipcodeID, new { minlength = 5, maxlength = 5, @type = "number", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._ZipcodeID)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Number, new { minlength = 10, maxlength = 10, @type = "number", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Number)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._dayID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m._dayID, Model.days)
+                        @Html.DropDownListFor(m => m._dayID, Model.days, "Select Pickup Day", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m._dayID)
         </div>
     </div>
     <div class="form-group">
