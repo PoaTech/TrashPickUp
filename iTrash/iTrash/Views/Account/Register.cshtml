@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>You're just moments away from personalized garbage removal!</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -54,15 +54,21 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m._City, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m._CityID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m._City, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m._CityID, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m._StateID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.DropDownListFor(m => m._StateID, Model.states)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m._ZipcodeID, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m._ZipcodeID, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

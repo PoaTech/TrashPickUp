@@ -98,12 +98,16 @@ namespace iTrash.Models
 
         [Required]
         [Display(Name = "City")]
-        public string _City { get; set; }
+        public string _CityID { get; set; }
 
         [Required]
         [Display(Name = "State")]
         public int _StateID { get; set; }
         public SelectList states { get; set; }
+
+        [Required]
+        [Display(Name = "Zipcode")]
+        public int _ZipcodeID { get; set; }
 
         [Display(Name = "Pickup day")]
         public int _dayID { get; set; }
