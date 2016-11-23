@@ -1,6 +1,6 @@
 ﻿@model iTrash.Models.ChangeTrashCollectionSettingsViewModel
 @{
-    ViewBag.Title = "Modify Collection Preferences";
+    ViewBag.Title = "Manage Collection Preferences";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -15,7 +15,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m._dayID, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m._dayID, Model.days)
+            @Html.DropDownListFor(m => m._dayID, Model.days, new { @class = "form-control" })
         </div>
     </div>
 </div>
