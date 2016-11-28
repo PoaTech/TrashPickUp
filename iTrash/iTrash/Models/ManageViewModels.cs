@@ -14,6 +14,10 @@ namespace iTrash.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
+    public class PersonalSettingsViewModel
+    {
+        public string PhoneNumber { get; set; }
+    }
 
     public class ManageLoginsViewModel
     {

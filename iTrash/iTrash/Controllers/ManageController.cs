@@ -15,6 +15,7 @@ namespace iTrash.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -341,7 +342,15 @@ namespace iTrash.Controllers
         }
         public ActionResult PersonalSettings()
         {
-            return View();
+            var query = (from a in db.Users
+                         where a.Id == User.Identity.GetUserId()
+                         select new { a.PhoneNumber}).Single();
+            string phonenumber = query.PhoneNumber;
+            var model = new PersonalSettingsViewModel
+            {
+                PhoneNumber = phonenumber
+            };
+            return View(model);
         }
         public ActionResult PickUpSettings()
         {

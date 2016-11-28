@@ -1,4 +1,4 @@
-﻿@model iTrash.Models.IndexViewModel
+﻿@model iTrash.Models.PersonalSettingsViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -9,10 +9,10 @@
     <hr />
 
     <ul class="nav nav-tabs">
-        <li><a href="Index">Account</a></li>
-        <li class="active"><a href="PersonalSettings">Personal</a></li>
-        <li><a href="PickupSettings">Pickup</a></li>
-        <li><a href="BillingInfoSettings">Billing Info</a></li>
+        <li>@Html.ActionLink("Account", "Index", "Manage")</li>
+        <li class="active">@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+        <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
+        <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
     </ul>
     <dl class="dl-horizontal">
 
@@ -24,7 +24,6 @@
              
              Uncomment the following block after you have set up two-factor authentication
         *@
-        @*  
             <dt>Phone Number:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None")
@@ -40,9 +39,9 @@
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")</text>
                 }
             </dd>
-        *@
+
     </dl>
 </div>

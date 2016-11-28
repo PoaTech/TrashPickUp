@@ -9,10 +9,10 @@
     <hr />
 
     <ul class="nav nav-tabs">
-        <li><a href="Index">Account</a></li>
-        <li><a href="PersonalSettings">Personal</a></li>
-        <li><a href="PickupSettings">Pickup</a></li>
-        <li class="active"><a href="BillingInfoSettings">Billing Info</a></li>
+        <li>@Html.ActionLink("Account", "Index", "Manage")</li>
+        <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+        <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
+        <li class="active">@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
     </ul>
     <dl class="dl-horizontal">
 
