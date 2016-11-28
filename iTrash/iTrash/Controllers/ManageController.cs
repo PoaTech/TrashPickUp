@@ -348,11 +348,23 @@ namespace iTrash.Controllers
             string userID = User.Identity.GetUserId();
             var model = new PickupSettingsViewModel
             {
-                
+                days = new SelectList(db.WeekDay)
             };
             model.days = new SelectList(db.WeekDay, "_ID", "_Day");
             model.GetUser(userID, db);
             return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PickUpSettings(PickupSettingsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.days = new SelectList(db.WeekDay);
+                return View("PickupSettings", model);
+            }
+            model.SetNewPickupDate(User.Identity.GetUserId(), db);
+            return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()
         {

@@ -2,22 +2,30 @@
 @{
     ViewBag.Title = "Manage";
 }
-
-@Html.AntiForgeryToken()
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-  
-    <ul class="nav nav-tabs">
-        <li>@Html.ActionLink("Account", "Index", "Manage")</li>
-        <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
-        <li class="active">@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
-        <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
-    </ul>
-
+@using (Html.BeginForm("PickupSettings", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
-        <h4>Pickup Day:</h4>
-        @Html.DisplayFor(m => m.pickupDate)
+        <h2>Change your account settings</h2>
+        <hr />
+  
+        <ul class="nav nav-tabs">
+            <li>@Html.ActionLink("Account", "Index", "Manage")</li>
+            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+            <li class="active">@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
+            <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
+        </ul>
+
+        <div>
+            <h4>Pickup Day:</h4>
+            <strong>@Html.DisplayFor(m => m.pickupDate)</strong>
+
+            <h4>Change pickup day</h4>
+            @Html.DropDownListFor(m => m.dayId, Model.days, "Select New Pickup Day", new { @class = "form-control" })
+            <br />
+            <br />
+            <input type="submit" class="btn btn-default" value="Save Changes" />
+        </div>
     </div>
-</div>
+}

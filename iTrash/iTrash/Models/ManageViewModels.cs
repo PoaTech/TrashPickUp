@@ -30,13 +30,17 @@ namespace iTrash.Models
 
     public class PickupSettingsViewModel
     {
+        
         public SelectList days { get; set; }
+        [Required]
+        public int dayId { get; set; }
+
         public ApplicationUser user;
         public string pickupDate;
-        public void GetUser(string userID, ApplicationDbContext db)
+        public void GetUser(string userId, ApplicationDbContext db)
         {
             var query = (from a in db.Users
-                         where a.Id == userID
+                         where a.Id == userId
                          select new { a }).Single();
             user = query.a;
             GetPickupDate(user._PickupDay_ID, db);
@@ -47,6 +51,15 @@ namespace iTrash.Models
                          where a._ID == dayId
                          select new { a._Day }).Single();
             pickupDate = query._Day;
+        }
+        public void SetNewPickupDate(string userId, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            var user = query.a;
+            user._PickupDay_ID = dayId;
+            db.SaveChanges();
         }
     }
     public class BillingInfoSettingsViewModel
