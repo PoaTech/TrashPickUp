@@ -343,7 +343,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Manage\ChangeTrashCollectionSettings.cshtml" />
     <Content Include="Views\Home\Pricing.cshtml" />
     <Content Include="Views\Manage\PersonalSettings.cshtml" />
     <Content Include="Views\Manage\PickupSettings.cshtml" />

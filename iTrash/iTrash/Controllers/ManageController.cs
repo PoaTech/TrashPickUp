@@ -299,13 +299,6 @@ namespace iTrash.Controllers
                 OtherLogins = otherLogins
             });
         }
-        public ActionResult ChangeTrashCollectionSettings()
-        {
-            ChangeTrashCollectionSettingsViewModel model = new ChangeTrashCollectionSettingsViewModel();
-            ApplicationDbContext db = new ApplicationDbContext();
-            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
-            return View(model);
-        } 
 
         //
         // POST: /Manage/LinkLogin
@@ -342,23 +335,30 @@ namespace iTrash.Controllers
         }
         public ActionResult PersonalSettings()
         {
-            var query = (from a in db.Users
-                         where a.Id == User.Identity.GetUserId()
-                         select new { a.PhoneNumber}).Single();
-            string phonenumber = query.PhoneNumber;
             var model = new PersonalSettingsViewModel
             {
-                PhoneNumber = phonenumber
+
             };
             return View(model);
         }
         public ActionResult PickUpSettings()
         {
-            return View();
+            string userID = User.Identity.GetUserId();
+            var model = new PickupSettingsViewModel
+            {
+                
+            };
+            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
+            model.GetUser(userID, db);
+            return View(model);
         }
         public ActionResult BillingInfoSettings()
         {
-            return View();
+            var model = new BillingInfoSettingsViewModel
+            {
+
+            };
+            return View(model);
         }
 
         #region Helpers

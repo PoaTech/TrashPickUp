@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace iTrash.Models
 {
@@ -16,7 +17,26 @@ namespace iTrash.Models
     }
     public class PersonalSettingsViewModel
     {
-        public string PhoneNumber { get; set; }
+
+    }
+
+    public class PickupSettingsViewModel
+    {
+        public SelectList days { get; set; }
+        public string PickupDate;
+        public ApplicationUser user;
+
+        public void GetUser(string userID, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userID
+                         select new { a }).Single();
+            user = query.a;
+        }
+    }
+    public class BillingInfoSettingsViewModel
+    {
+
     }
 
     public class ManageLoginsViewModel
@@ -25,14 +45,7 @@ namespace iTrash.Models
         public IList<AuthenticationDescription> OtherLogins { get; set; }
     }
     //Adam's work
-    public class ChangeTrashCollectionSettingsViewModel
-    {
-        
-        
-        [Display(Name = "Pickup day")]
-        public int _dayID { get; set; }
-        public SelectList days { get; set; }
-    }
+        //Here lies Adam's work. It was once great. Until Max ruined it.
 
     public class FactorViewModel
     {
