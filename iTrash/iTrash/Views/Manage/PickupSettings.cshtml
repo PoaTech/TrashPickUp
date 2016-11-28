@@ -17,13 +17,7 @@
     </ul>
 
     <div>
-        <h4>Change your trash collection settings</h4>
-        <h3>Your current trash pick up day</h3>
-        <div class="form-group">
-            @Html.LabelFor(m => m.user.pickupDay._Day, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.user.pickupDay._Day, Model.days, new { @class = "form-control" })
-            </div>
-        </div>
+        <h4>Pickup Day:</h4>
+        @Html.DisplayFor(m => m.pickupDate)
     </div>
 </div>

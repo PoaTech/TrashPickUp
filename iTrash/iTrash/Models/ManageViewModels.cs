@@ -17,13 +17,6 @@ namespace iTrash.Models
     }
     public class PersonalSettingsViewModel
     {
-
-    }
-
-    public class PickupSettingsViewModel
-    {
-        public SelectList days { get; set; }
-        public string PickupDate;
         public ApplicationUser user;
 
         public void GetUser(string userID, ApplicationDbContext db)
@@ -34,9 +27,39 @@ namespace iTrash.Models
             user = query.a;
         }
     }
+
+    public class PickupSettingsViewModel
+    {
+        public SelectList days { get; set; }
+        public ApplicationUser user;
+        public string pickupDate;
+        public void GetUser(string userID, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userID
+                         select new { a }).Single();
+            user = query.a;
+            GetPickupDate(user._PickupDay_ID, db);
+        }
+        public void GetPickupDate(int dayId, ApplicationDbContext db)
+        {
+            var query = (from a in db.WeekDay
+                         where a._ID == dayId
+                         select new { a._Day }).Single();
+            pickupDate = query._Day;
+        }
+    }
     public class BillingInfoSettingsViewModel
     {
+        public ApplicationUser user;
 
+        public void GetUser(string userID, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userID
+                         select new { a }).Single();
+            user = query.a;
+        }
     }
 
     public class ManageLoginsViewModel

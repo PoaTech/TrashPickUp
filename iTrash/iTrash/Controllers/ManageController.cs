@@ -335,10 +335,12 @@ namespace iTrash.Controllers
         }
         public ActionResult PersonalSettings()
         {
+            string userID = User.Identity.GetUserId();
             var model = new PersonalSettingsViewModel
             {
 
             };
+            model.GetUser(userID, db);
             return View(model);
         }
         public ActionResult PickUpSettings()
@@ -354,10 +356,12 @@ namespace iTrash.Controllers
         }
         public ActionResult BillingInfoSettings()
         {
+            string userID = User.Identity.GetUserId();
             var model = new BillingInfoSettingsViewModel
             {
 
             };
+            model.GetUser(userID, db);
             return View(model);
         }
 
