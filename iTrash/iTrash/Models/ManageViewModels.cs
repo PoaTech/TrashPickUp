@@ -32,25 +32,36 @@ namespace iTrash.Models
     {
         
         public SelectList days { get; set; }
-        [Required]
         public int dayId { get; set; }
-
+        public int altDayId { get; set; }
+        public bool changePickupDate { get; set; }
+        public bool changeAltPickupDate { get; set; }
+        public bool removeAltPickupDate { get; set; }
         public ApplicationUser user;
         public string pickupDate;
+        public string altPickupDate;
         public void GetUser(string userId, ApplicationDbContext db)
         {
             var query = (from a in db.Users
                          where a.Id == userId
                          select new { a }).Single();
             user = query.a;
-            GetPickupDate(user._PickupDay_ID, db);
+            pickupDate = GetPickupDate(user._PickupDay_ID, db);
+            altPickupDate = GetPickupDate(user._AltPickupDay_ID, db);
         }
-        public void GetPickupDate(int dayId, ApplicationDbContext db)
+        public string GetPickupDate(int? dayId, ApplicationDbContext db)
         {
-            var query = (from a in db.WeekDay
-                         where a._ID == dayId
-                         select new { a._Day }).Single();
-            pickupDate = query._Day;
+            if (dayId != null)
+            {
+                var query = (from a in db.WeekDay
+                             where a._ID == dayId
+                             select new { a._Day }).Single();
+                return query._Day;
+            }
+            else
+            {
+                return "None";
+            }
         }
         public void SetNewPickupDate(string userId, ApplicationDbContext db)
         {
@@ -59,6 +70,24 @@ namespace iTrash.Models
                          select new { a }).Single();
             var user = query.a;
             user._PickupDay_ID = dayId;
+            db.SaveChanges();
+        }
+        public void SetNewAltPickupDate(string userId, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            var user = query.a;
+            user._AltPickupDay_ID = altDayId;
+            db.SaveChanges();
+        }
+        public void RemoveAltPickupDate(string userId, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            var user = query.a;
+            user._AltPickupDay_ID = null;
             db.SaveChanges();
         }
     }

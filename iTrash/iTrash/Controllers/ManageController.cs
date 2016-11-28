@@ -360,10 +360,22 @@ namespace iTrash.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.days = new SelectList(db.WeekDay);
-                return View("PickupSettings", model);
+                model.days = new SelectList(db.WeekDay, "_ID", "_Day");
+
+                return View(model);
             }
-            model.SetNewPickupDate(User.Identity.GetUserId(), db);
+            if (model.changePickupDate)
+            {
+                model.SetNewPickupDate(User.Identity.GetUserId(), db);
+            }
+            if (model.changeAltPickupDate)
+            {
+                model.SetNewAltPickupDate(User.Identity.GetUserId(), db);
+            }
+            if (model.removeAltPickupDate)
+            {
+                model.RemoveAltPickupDate(User.Identity.GetUserId(), db);
+            }
             return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()

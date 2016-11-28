@@ -18,11 +18,30 @@
         </ul>
 
         <div>
-            <h4>Pickup Day:</h4>
+            <h2>Pickup Day:</h2>
             <strong>@Html.DisplayFor(m => m.pickupDate)</strong>
-
-            <h4>Change pickup day</h4>
-            @Html.DropDownListFor(m => m.dayId, Model.days, "Select New Pickup Day", new { @class = "form-control" })
+            <br />
+            <br />
+            <h4>@Html.CheckBoxFor(m => m.changePickupDate) Change pickup day</h4>
+            @Html.DropDownListFor(m => m.dayId, Model.days, new { @class = "form-control" })
+            <br />
+            <h2>Alternate Pickup Day:</h2>
+            <strong>@Html.DisplayFor(m => m.altPickupDate)</strong>
+            <br />
+            <br />
+            @if (Model.altPickupDate == "None")
+            {
+                <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Set alternate pickup day</h4>
+                @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" })
+            }
+            else
+            {
+                <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Change alternate pickup day</h4>
+                @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" });
+                <h4>@Html.CheckBoxFor(m => m.removeAltPickupDate) Remove alternate pickup day</h4>
+            }
+            <br />
+            <br />
             <br />
             <br />
             <input type="submit" class="btn btn-default" value="Save Changes" />
