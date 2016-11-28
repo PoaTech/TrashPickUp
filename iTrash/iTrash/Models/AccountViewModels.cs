@@ -109,8 +109,6 @@ namespace iTrash.Models
         [Required]
         [Display(Name = "Zipcode")]
         public int? _ZipcodeID { get; set; }
-
-        
         
         [Required]
         [Phone]
@@ -120,6 +118,16 @@ namespace iTrash.Models
         [Display(Name = "Pickup day")]
         public int _dayID { get; set; }
         public SelectList days { get; set; }
+
+        public RegisterViewModel()
+        {
+
+        }
+
+        public RegisterViewModel(ApplicationDbContext db)
+        {
+            
+        }
     }
 
     public class ResetPasswordViewModel
@@ -155,7 +163,11 @@ namespace iTrash.Models
         private int cityID;
         private int stateID;
         private int zipcodeID;
-        ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db;
+        public AddressCreationModel(ApplicationDbContext db)
+        {
+            this.db = db;
+        }
         public int GetAddressID(string addressLine1, string addressLine2, string city, int state, int? zipcodeNullable)
         {
             stateID = state;

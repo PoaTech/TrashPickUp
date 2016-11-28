@@ -156,7 +156,7 @@ namespace iTrash.Controllers
         {
             if (ModelState.IsValid)
             {
-                AddressCreationModel addressCreator = new AddressCreationModel();
+                AddressCreationModel addressCreator = new AddressCreationModel(db);
                 int addressID = addressCreator.GetAddressID (model._StreetAddress1, model._StreetAddress2, model._CityID, model._StateID, model._ZipcodeID);
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID, _Address_ID = addressID, PhoneNumber = model.Number };

@@ -216,6 +216,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +233,26 @@
     <Compile Include="Migrations\201611231541110_Changed zipcode to int.Designer.cs">
       <DependentUpon>201611231541110_Changed zipcode to int.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611281437003_Adding stops to trucks.cs" />
+    <Compile Include="Migrations\201611281437003_Adding stops to trucks.Designer.cs">
+      <DependentUpon>201611281437003_Adding stops to trucks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281438272_Fixed Stops name.cs" />
+    <Compile Include="Migrations\201611281438272_Fixed Stops name.Designer.cs">
+      <DependentUpon>201611281438272_Fixed Stops name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281442148_Removed stops from trucks.cs" />
+    <Compile Include="Migrations\201611281442148_Removed stops from trucks.Designer.cs">
+      <DependentUpon>201611281442148_Removed stops from trucks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281504577_Made truck zipcode nullable.cs" />
+    <Compile Include="Migrations\201611281504577_Made truck zipcode nullable.Designer.cs">
+      <DependentUpon>201611281504577_Made truck zipcode nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281532296_Added Pickup table.cs" />
+    <Compile Include="Migrations\201611281532296_Added Pickup table.Designer.cs">
+      <DependentUpon>201611281532296_Added Pickup table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -246,6 +267,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Month.cs" />
     <Compile Include="Models\PaymentInfo.cs" />
+    <Compile Include="Models\Pickup.cs" />
+    <Compile Include="Models\RouteViewModels.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Models\WeekDay.cs" />
@@ -321,8 +344,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Manage\ChangeTrashCollectionSettings.cshtml" />
+    <Content Include="Views\Home\Pricing.cshtml" />
+    <Content Include="Views\Manage\PersonalSettings.cshtml" />
+    <Content Include="Views\Manage\PickupSettings.cshtml" />
+    <Content Include="Views\Manage\BillingInfoSettings.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Route\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -343,6 +372,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611231541110_Changed zipcode to int.resx">
       <DependentUpon>201611231541110_Changed zipcode to int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281437003_Adding stops to trucks.resx">
+      <DependentUpon>201611281437003_Adding stops to trucks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281438272_Fixed Stops name.resx">
+      <DependentUpon>201611281438272_Fixed Stops name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281442148_Removed stops from trucks.resx">
+      <DependentUpon>201611281442148_Removed stops from trucks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281504577_Made truck zipcode nullable.resx">
+      <DependentUpon>201611281504577_Made truck zipcode nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281532296_Added Pickup table.resx">
+      <DependentUpon>201611281532296_Added Pickup table.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

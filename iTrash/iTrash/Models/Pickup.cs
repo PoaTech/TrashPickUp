@@ -7,15 +7,13 @@ using System.Web;
 
 namespace iTrash.Models
 {
-    public class Truck
+    public class Pickup
     {
-        
-        
         [Key]
         public int _ID { get; set; }
-        public string _TruckNumber { get; set; }
-        [ForeignKey("zipcode")]
-        public int? _Zipcode { get; set; }
-        public Zipcode zipcode { get; set; }
+
+        [ForeignKey("user")]
+        public string _User { get; set; }
+        public ApplicationUser user { get; set; }
     }
 }

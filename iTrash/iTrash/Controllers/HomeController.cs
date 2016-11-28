@@ -26,5 +26,12 @@ namespace iTrash.Controllers
 
             return View();
         }
+
+        public ActionResult Pricing()
+        {
+            ViewBag.Message = "Pricing Options";
+
+            return View();
+        }
     }
 }

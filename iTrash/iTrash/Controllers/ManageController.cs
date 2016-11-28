@@ -339,8 +339,20 @@ namespace iTrash.Controllers
 
             base.Dispose(disposing);
         }
+        public ActionResult PersonalSettings()
+        {
+            return View();
+        }
+        public ActionResult PickUpSettings()
+        {
+            return View();
+        }
+        public ActionResult BillingInfoSettings()
+        {
+            return View();
+        }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
