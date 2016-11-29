@@ -52,7 +52,7 @@ namespace iTrash.Models
             user = query.a;
             pickupDate = GetPickupDate(user._PickupDay_ID, db);
             altPickupDate = GetPickupDate(user._AltPickupDay_ID, db);
-            Label leavedate = Page.FindControl("leaveDateInput").Controls. //<---------------THIS
+            //Label leavedate = Page.FindControl("leaveDateInput").Controls. //<---------------THIS
         }
         public string GetPickupDate(int? dayId, ApplicationDbContext db)
         {
