@@ -270,6 +270,7 @@
     <Compile Include="Models\PaymentInfo.cs" />
     <Compile Include="Models\Pickup.cs" />
     <Compile Include="Models\RouteViewModels.cs" />
+    <Compile Include="Models\ServiceTier.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Models\WeekDay.cs" />
