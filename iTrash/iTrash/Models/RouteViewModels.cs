@@ -18,7 +18,7 @@ namespace iTrash.Models
         public void AssignPickups()
         {
             ClearPickups();
-            SetPickups(GetUserList());
+            SetPickups(GetUserList(false));
             AssignTrucks(GetZipcodes());
         }
         public void ClearPickups()
@@ -27,13 +27,13 @@ namespace iTrash.Models
             SqlCommand cmd = new SqlCommand(sqlTrunc);
             cmd.ExecuteNonQuery();
         }
-        public List<ApplicationUser> GetUserList()
+        public List<ApplicationUser> GetUserList(bool pickupSuspended)
         {
             List<ApplicationUser> usersNeedingPickup = new List<ApplicationUser>();
             DateTime date = new DateTime();
             string currentDay = date.DayOfWeek.ToString();
             var query = (from a in db.Users
-                         where a.altPickupDay._Day == currentDay && a.returnDate == null
+                         where a.altPickupDay._Day == currentDay && !pickupSuspended
                          select a);
             foreach (ApplicationUser user in query)
             {
@@ -41,8 +41,8 @@ namespace iTrash.Models
                 user._AltPickupDay_ID = null;
             }
             query = (from a in db.Users
-                         where a.pickupDay._Day == currentDay && a._AltPickupDay_ID != null && a.returnDate == null
-                         select a);
+                         where a.pickupDay._Day == currentDay && a._AltPickupDay_ID == null && !pickupSuspended
+                     select a);
             foreach (ApplicationUser user in query)
             {
                 usersNeedingPickup.Add(user);

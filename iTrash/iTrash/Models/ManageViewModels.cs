@@ -4,6 +4,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Web.Mvc;
 using System.Linq;
+using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace iTrash.Models
 {
@@ -37,6 +40,7 @@ namespace iTrash.Models
         public bool changePickupDate { get; set; }
         public bool changeAltPickupDate { get; set; }
         public bool removeAltPickupDate { get; set; }
+        public string leavedate;
         public ApplicationUser user;
         public string pickupDate;
         public string altPickupDate;
@@ -48,6 +52,7 @@ namespace iTrash.Models
             user = query.a;
             pickupDate = GetPickupDate(user._PickupDay_ID, db);
             altPickupDate = GetPickupDate(user._AltPickupDay_ID, db);
+            Label leavedate = Page.FindControl("leaveDateInput").Controls. //<---------------THIS
         }
         public string GetPickupDate(int? dayId, ApplicationDbContext db)
         {

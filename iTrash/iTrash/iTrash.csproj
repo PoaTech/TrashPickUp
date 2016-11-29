@@ -259,6 +259,7 @@
     <Compile Include="Models\CalendarDay.cs" />
     <Compile Include="Models\CardType.cs" />
     <Compile Include="Models\CheckingAccount.cs" />
+    <Compile Include="Models\ChoosenDate.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Models\Date.cs" />
@@ -432,6 +433,7 @@
     <Content Include="Views\Manage\PersonalSettings.cshtml" />
     <Content Include="Views\Manage\PickupSettings.cshtml" />
     <Content Include="Views\Manage\BillingInfoSettings.cshtml" />
+    <Content Include="Views\Shared\ChoosenDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Route\" />

@@ -3,3 +3,6 @@
         $(".datecontrol").datepicker();
     });
 }
+$(function () {
+    $(".datefield").datepicker();
+});
