@@ -373,7 +373,6 @@ namespace iTrash.Controllers
             {
                 model.RemoveAltPickupDate(userId);
             }
-            string yolo = model.returnDateInput;
             return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()

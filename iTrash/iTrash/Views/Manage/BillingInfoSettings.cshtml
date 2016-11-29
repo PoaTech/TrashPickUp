@@ -14,7 +14,24 @@
         <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
         <li class="active">@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
     </ul>
+    <br/>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+        <input type="hidden" name="business" value="Paymentprocessing@poatek.com" />
+        <input type="hidden" name="item_name" value="TR@SH Bronze service tier" />
+        <input type="submit" value="Pay for TR@SH!" />
 
+        <input type="hidden" name="a1" value="0" />
+        <input type="hidden" name="p1" value="7" />
+        <input type="hidden" name="t1" value="D" />
+        <input type="hidden" name="a3" value="14.99" />
+        <input type="hidden" name="p3" value="1" />
+        <input type="hidden" name="t3" value="M" />
+        <input type="hidden" name="src" value="1" />
+        <input type="hidden" name="srt" value="0" />
+        <input type="hidden" name="sra" value="1" />
+
+    </form>
 
 
 </div>

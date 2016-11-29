@@ -15,14 +15,14 @@ namespace iTrash.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "The origin story of TR@SH";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "We value your feedback more than your trash.";
 
             return View();
         }

@@ -102,14 +102,29 @@ namespace iTrash.Models
             query.a._AltPickupDay_ID = null;
             db.SaveChanges();
         }
-        //public void SetLeaveDate(string userId)
-        //{
-        //    var query = (from a in db.Users
-        //                 where a.Id == userId
-        //                 select new { a }).Single();
-        //    query.a._AltPickupDay_ID = ;
-        //    db.SaveChanges();
-        //}
+        public void SetLeaveDate(string userId)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            query.a._LeaveDate_ID = CreateDate();
+            db.SaveChanges();
+        }
+        public int? CreateDate()
+        {
+            if(CheckDate())
+            {
+                var query = (from a in db.Users
+                             where a.Id == userId
+                             select new { a }).Single();
+                query.a._LeaveDate_ID = CreateDate();
+            }
+        }
+        public bool CheckDate()
+        {
+            var query = from a in db.Date
+                        where a._Day = 
+        }
         public DateTime GetDate(int? dateId)
         {
             var queryDay = (from a in db.CalendarDay
