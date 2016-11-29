@@ -67,6 +67,5 @@ namespace iTrash.Models
         public DbSet<CreditCard> CreditCard { get; set; }
         public DbSet<WeekDay> WeekDay { get; set; }
         public DbSet<Pickup> Pickup { get; set; }
-
     }
 }

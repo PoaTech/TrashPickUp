@@ -433,7 +433,6 @@
     <Content Include="Views\Manage\PersonalSettings.cshtml" />
     <Content Include="Views\Manage\PickupSettings.cshtml" />
     <Content Include="Views\Manage\BillingInfoSettings.cshtml" />
-    <Content Include="Views\Shared\ChoosenDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Route\" />

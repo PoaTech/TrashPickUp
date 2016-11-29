@@ -346,18 +346,15 @@ namespace iTrash.Controllers
         public ActionResult PickUpSettings()
         {
             string userID = User.Identity.GetUserId();
-            var model = new PickupSettingsViewModel
-            {
-                days = new SelectList(db.WeekDay)
-            };
-            model.days = new SelectList(db.WeekDay, "_ID", "_Day");
-            model.GetUser(userID, db);
+            var model = new PickupSettingsViewModel();
+            model.GetData(userID, db);
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PickUpSettings(PickupSettingsViewModel model)
         {
+            string userId = User.Identity.GetUserId();
             if (!ModelState.IsValid)
             {
                 model.days = new SelectList(db.WeekDay, "_ID", "_Day");
@@ -366,16 +363,17 @@ namespace iTrash.Controllers
             }
             if (model.changePickupDate)
             {
-                model.SetNewPickupDate(User.Identity.GetUserId(), db);
+                model.SetNewPickupDate(userId);
             }
             if (model.changeAltPickupDate)
             {
-                model.SetNewAltPickupDate(User.Identity.GetUserId(), db);
+                model.SetNewAltPickupDate(userId);
             }
             if (model.removeAltPickupDate)
             {
-                model.RemoveAltPickupDate(User.Identity.GetUserId(), db);
+                model.RemoveAltPickupDate(userId);
             }
+            string yolo = model.returnDateInput;
             return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()

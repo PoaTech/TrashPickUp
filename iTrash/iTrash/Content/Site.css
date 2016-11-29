@@ -34,3 +34,8 @@ textarea {
 .Bold {
     font-weight: bold;
 }
+.PickupCenter {
+    max-width: 75%;
+    margin: auto;
+    background-color: blue;
+}

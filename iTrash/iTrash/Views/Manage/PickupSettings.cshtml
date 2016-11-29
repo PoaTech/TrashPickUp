@@ -31,28 +31,50 @@
                 <strong>@Html.DisplayFor(m => m.altPickupDate)</strong>
                 <br />
                 <br />
-                @if (Model.altPickupDate == "None")
+                <div class="PickupCenter">
+                    @if (Model.altPickupDate == "None")
+                    {
+                        <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Set alternate pickup day</h4>
+                        @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Change alternate pickup day</h4>
+                        @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" });
+                        <h4>@Html.CheckBoxFor(m => m.removeAltPickupDate) Remove alternate pickup day</h4>
+                    }
+                </div>
+            </div>
+            <div class="col-sm-6">
+                @if (Model.user._ReturnDate_ID == null)
                 {
-                    <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Set alternate pickup day</h4>
-                    @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" })
+                    <h2>Suspend Service:</h2>
+                    <br />
+                    <div class="input-group input-daterange PickupCenter">
+
+                        <p>From: @Html.TextBoxFor(m => m.leaveDateInput, new { @class = "form-control", @type = "date" })</p>
+                        <p>To: @Html.TextBoxFor(m => m.returnDateInput, new { @class = "form-control", @type = "date" })</p>
+                    </div>
                 }
                 else
                 {
-                    <h4>@Html.CheckBoxFor(m => m.changeAltPickupDate) Change alternate pickup day</h4>
-                    @Html.DropDownListFor(m => m.altDayId, Model.days, new { @class = "form-control" });
-                    <h4>@Html.CheckBoxFor(m => m.removeAltPickupDate) Remove alternate pickup day</h4>
+                    <h2>Service Will Be Suspended:</h2>
+                    <br />
+                    <div class="input-group input-daterange PickupCenter">
+                        @Html.DisplayFor(m => m.user.returnDate)
+                        <p>From: @Html.DisplayFor(m => m.leaveDate)</p>
+                        <p>To: @Html.DisplayFor(m => m.returnDate)</p>
+                    </div>
                 }
-                <br />
-                <br />
-                <br />
-                <br />
-                <input type="submit" class="btn btn-default" value="Save Changes" />
             </div>
-            <div class="col-sm-6">
-                <div class="input-group input-daterange">
-                    <p>From: <input type="date" class="form-control"></p>
-                    <p>To: <input type="date" class="form-control"></p>
-                </div>
+        </div>
+        <div class="row">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="PickupCenter">
+                <input type="submit" class="btn btn-default" value="Save Changes" />
             </div>
         </div>
     </div>
