@@ -18,8 +18,6 @@ namespace iTrash.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public int role;
-        public string userId;
-        ApplicationDbContext db;
         public bool IsOnlyDriver(string userId, ApplicationDbContext db)
         {
             var query = (from a in db.Users
@@ -257,12 +255,16 @@ namespace iTrash.Models
     }
     public class RouteViewModel
     {
+        public SelectList trucks { get; set; }
+        public string truckId { get; set; }
+        public ApplicationDbContext db;
         public ApplicationUser user;
-        ApplicationDbContext db;
+        public string route = "";
         public int role;
 
         public void GetData(string userID, ApplicationDbContext db)
         {
+            trucks = new SelectList(db.Truck, "_ID", "_TruckNumber");
             this.db = db;
             var query = (from a in db.Users
                          where a.Id == userID

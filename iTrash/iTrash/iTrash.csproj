@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201611301518426_Adding role to User.Designer.cs">
       <DependentUpon>201611301518426_Adding role to User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611301642582_Trucknumber required.cs" />
+    <Compile Include="Migrations\201611301642582_Trucknumber required.Designer.cs">
+      <DependentUpon>201611301642582_Trucknumber required.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -479,6 +483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611301518426_Adding role to User.resx">
       <DependentUpon>201611301518426_Adding role to User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611301642582_Trucknumber required.resx">
+      <DependentUpon>201611301642582_Trucknumber required.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

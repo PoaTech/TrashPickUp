@@ -20,5 +20,8 @@
     </ul>
     <div>
         <h2>View Route</h2>
+        <h5>Select Truck</h5>
+        @Html.DropDownListFor(m => m.truckId, Model.trucks, new { @class = "form-control" })
+
     </div>
 </div>

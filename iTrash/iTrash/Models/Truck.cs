@@ -13,6 +13,7 @@ namespace iTrash.Models
         
         [Key]
         public int _ID { get; set; }
+        [Required]
         public string _TruckNumber { get; set; }
         [ForeignKey("zipcode")]
         public int? _Zipcode { get; set; }
