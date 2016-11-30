@@ -1,6 +1,6 @@
-﻿@model iTrash.Models.PersonalSettingsViewModel
+﻿@model iTrash.Models.RouteViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Routes";
 }
 
 <p class="text-success">@ViewBag.StatusMessage</p>
@@ -9,17 +9,16 @@
         @if (Model.role == 0 || Model.role == 2)
         {
             <li>@Html.ActionLink("Account", "Index", "Manage")</li>
-            <li class="active">@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
             <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
             <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
         }
         @if (Model.role > 0)
         {
-            <li>@Html.ActionLink("Route", "Route", "Manage")</li>
+            <li class="active">@Html.ActionLink("Route", "Route", "Manage")</li>
         }
     </ul>
     <div>
-        <h2>Personal Settings</h2>
-        <hr />
+        <h2>View Route</h2>
     </div>
 </div>

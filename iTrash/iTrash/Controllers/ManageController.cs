@@ -73,6 +73,11 @@ namespace iTrash.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            if (model.IsOnlyDriver(userId, db))
+            {
+                return RedirectToAction("Route", "Manage");
+            }
+            model.GetData(userId, db);
             return View(model);
         }
 
@@ -340,7 +345,7 @@ namespace iTrash.Controllers
             {
 
             };
-            model.GetUser(userID, db);
+            model.GetData(userID, db);
             return View(model);
         }
         public ActionResult PickUpSettings()
@@ -390,10 +395,16 @@ namespace iTrash.Controllers
             {
 
             };
-            model.GetUser(userID, db);
+            model.GetData(userID, db);
             return View(model);
         }
-
+        public ActionResult Route()
+        {
+            string userID = User.Identity.GetUserId();
+            var model = new RouteViewModel();
+            model.GetData(userID, db);
+            return View(model);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

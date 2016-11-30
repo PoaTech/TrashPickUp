@@ -7,15 +7,15 @@ using iTrash.Models;
 
 namespace iTrash.Controllers
 {
-    public class RouteController : Controller
-    {
+    //public class RouteController : Controller
+    //{
 
-        private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Route
-        public ActionResult CreateRoute()
-        {
-            RouteViewModel model = new RouteViewModel(db);
-            return View(model);
-        }
-    }
+    //    private ApplicationDbContext db = new ApplicationDbContext();
+    //    // GET: Route
+    //    public ActionResult CreateRoute()
+    //    {
+    //        RouteViewModel model = new RouteViewModel(db);
+    //        return View(model);
+    //    }
+    //}
 }

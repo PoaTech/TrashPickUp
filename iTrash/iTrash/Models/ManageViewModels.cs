@@ -17,17 +17,36 @@ namespace iTrash.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public int role;
+        public string userId;
+        ApplicationDbContext db;
+        public bool IsOnlyDriver(string userId, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            return (query.a.role == 1);
+        }
+        public void GetData(string userID, ApplicationDbContext db)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userID
+                         select new { a }).Single();
+            role = query.a.role;
+        }
     }
     public class PersonalSettingsViewModel
     {
         public ApplicationUser user;
+        public int role;
 
-        public void GetUser(string userID, ApplicationDbContext db)
+        public void GetData(string userID, ApplicationDbContext db)
         {
             var query = (from a in db.Users
                          where a.Id == userID
                          select new { a }).Single();
             user = query.a;
+            role = user.role;
         }
     }
 
@@ -47,6 +66,7 @@ namespace iTrash.Models
         public DateTime returnDate;
         public DateTime leaveDate;
         public string pickupDate;
+        public int role;
         ApplicationDbContext db = new ApplicationDbContext();
 
         public void GetData(string userId, ApplicationDbContext db)
@@ -59,6 +79,7 @@ namespace iTrash.Models
             days = new SelectList(db.WeekDay, "_ID", "_Day");
             pickupDate = GetPickupDate(user._PickupDay_ID);
             altPickupDate = GetPickupDate(user._AltPickupDay_ID);
+            role = user.role;
             if (user._ReturnDate_ID != null && user._LeaveDate_ID != null)
             {
                 returnDate = GetDate(user._ReturnDate_ID);
@@ -223,13 +244,31 @@ namespace iTrash.Models
     public class BillingInfoSettingsViewModel
     {
         public ApplicationUser user;
+        public int role;
 
-        public void GetUser(string userID, ApplicationDbContext db)
+        public void GetData(string userID, ApplicationDbContext db)
         {
             var query = (from a in db.Users
                          where a.Id == userID
                          select new { a }).Single();
             user = query.a;
+            role = user.role;
+        }
+    }
+    public class RouteViewModel
+    {
+        public ApplicationUser user;
+        ApplicationDbContext db;
+        public int role;
+
+        public void GetData(string userID, ApplicationDbContext db)
+        {
+            this.db = db;
+            var query = (from a in db.Users
+                         where a.Id == userID
+                         select new { a }).Single();
+            user = query.a;
+            role = user.role;
         }
     }
 

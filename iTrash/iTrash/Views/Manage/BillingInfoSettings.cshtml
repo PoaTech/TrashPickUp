@@ -5,15 +5,23 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h2>Change your account settings</h2>
-    <hr />
-
     <ul class="nav nav-tabs">
-        <li>@Html.ActionLink("Account", "Index", "Manage")</li>
-        <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
-        <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
-        <li class="active">@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
+        @if (Model.role == 0 || Model.role == 2)
+        {
+            <li>@Html.ActionLink("Account", "Index", "Manage")</li>
+            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+            <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
+            <li class="active">@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
+        }
+        @if (Model.role > 0)
+        {
+            <li>@Html.ActionLink("Route", "Route", "Manage")</li>
+        }
     </ul>
+    <div>
+        <h2>Billing</h2>
+        <hr />
+    </div>
     <br/>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />

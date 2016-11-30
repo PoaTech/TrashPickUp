@@ -80,7 +80,7 @@ namespace iTrash.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Manage");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -159,7 +159,7 @@ namespace iTrash.Controllers
                 AddressCreationModel addressCreator = new AddressCreationModel(db);
                 int addressID = addressCreator.GetAddressID (model._StreetAddress1, model._StreetAddress2, model._CityID, model._StateID, model._ZipcodeID);
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID, _Address_ID = addressID, PhoneNumber = model.Number };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID, _Address_ID = addressID, PhoneNumber = model.Number, role = 0 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

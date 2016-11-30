@@ -37,6 +37,7 @@ namespace iTrash.Models
         [ForeignKey("returnDate")]
         public int? _ReturnDate_ID { get; set; }
         public Date returnDate { get; set; }
+        public int role { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

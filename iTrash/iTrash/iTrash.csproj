@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201611281532296_Added Pickup table.Designer.cs">
       <DependentUpon>201611281532296_Added Pickup table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611301518426_Adding role to User.cs" />
+    <Compile Include="Migrations\201611301518426_Adding role to User.Designer.cs">
+      <DependentUpon>201611301518426_Adding role to User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -269,7 +273,7 @@
     <Compile Include="Models\Month.cs" />
     <Compile Include="Models\PaymentInfo.cs" />
     <Compile Include="Models\Pickup.cs" />
-    <Compile Include="Models\RouteViewModels.cs" />
+    <Compile Include="Models\TESTRouteViewModels.cs" />
     <Compile Include="Models\ServiceTier.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
@@ -434,10 +438,9 @@
     <Content Include="Views\Manage\PersonalSettings.cshtml" />
     <Content Include="Views\Manage\PickupSettings.cshtml" />
     <Content Include="Views\Manage\BillingInfoSettings.cshtml" />
+    <Content Include="Views\Manage\Route.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Route\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -473,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611281532296_Added Pickup table.resx">
       <DependentUpon>201611281532296_Added Pickup table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611301518426_Adding role to User.resx">
+      <DependentUpon>201611301518426_Adding role to User.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
