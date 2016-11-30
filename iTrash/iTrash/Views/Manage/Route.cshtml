@@ -2,26 +2,46 @@
 @{
     ViewBag.Title = "Routes";
 }
-
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <ul class="nav nav-tabs">
-        @if (Model.role == 0 || Model.role == 2)
-        {
-            <li>@Html.ActionLink("Account", "Index", "Manage")</li>
-            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
-            <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
-            <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
-        }
-        @if (Model.role > 0)
-        {
-            <li class="active">@Html.ActionLink("Route", "Route", "Manage")</li>
-        }
-    </ul>
+@using (Html.BeginForm("Route", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
-        <h2>View Route</h2>
-        <h5>Select Truck</h5>
-        @Html.DropDownListFor(m => m.truckId, Model.trucks, new { @class = "form-control" })
+        <ul class="nav nav-tabs">
+            @if (Model.role == 0 || Model.role == 2)
+            {
+                <li>@Html.ActionLink("Account", "Index", "Manage")</li>
+                <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
+                <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
+                <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
+            }
+            @if (Model.role > 0)
+            {
+                <li class="active">@Html.ActionLink("Route", "Route", "Manage")</li>
+            }
+        </ul>
+        <div>
+            <h2>View Route</h2>
+            <h5>Select Truck</h5>
+            @Html.DropDownListFor(m => m.truckId, Model.trucks, new { @class = "form-control" })
 
+        </div>
+        <br />
+        <input type="submit" class="btn btn-default" value="Choose Route" />
+        <br />
+        <br />
+        <br />
+        @if (Model.route != 0)
+        {
+            <div class="row">
+                <div class="col-sm-12 google-maps">
+                    <iframe
+                            
+                            frameborder="0"
+                            src=@Model.GetApiLink() allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        }
     </div>
-</div>
+}

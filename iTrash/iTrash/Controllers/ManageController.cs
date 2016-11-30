@@ -410,6 +410,17 @@ namespace iTrash.Controllers
             model.GetData(userID, db);
             return View(model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Route(RouteViewModel model)
+        {
+            string userID = User.Identity.GetUserId();
+            var newModel = new RouteViewModel();
+            newModel.GetData(userID, db);
+            newModel.route = model.truckId;
+            newModel.GetRouteInfo();
+            return View(newModel);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
