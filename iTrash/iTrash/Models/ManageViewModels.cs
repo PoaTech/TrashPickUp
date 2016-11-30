@@ -315,6 +315,34 @@ namespace iTrash.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangeAddressViewModel
+    {
+        [Required]
+        [Display(Name = "Street Address Line 1")]
+        public string _StreetAddress1 { get; set; }
+
+        [Display(Name = "Street Address Line 2")]
+        public string _StreetAddress2 { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string _CityID { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public int _StateID { get; set; }
+        public SelectList states { get; set; }
+
+        [Required]
+        [Display(Name = "Zipcode")]
+        public int? _ZipcodeID { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string Number { get; set; }
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]

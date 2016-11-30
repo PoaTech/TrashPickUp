@@ -1,0 +1,49 @@
+﻿@model iTrash.Models.ChangeAddressViewModel
+@{ 
+    ViewBag.Title = "Change Address";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="form-group">
+    @Html.LabelFor(m => m._StreetAddress1, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m._StreetAddress1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._StreetAddress1)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m._StreetAddress2, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m._StreetAddress2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._StreetAddress2)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m._CityID, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m._CityID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._CityID)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m._StateID, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m._StateID, Model.states, "Select State", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._StateID)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m._ZipcodeID, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m._ZipcodeID, new { minlength = 5, maxlength = 5, @type = "number", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m._ZipcodeID)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Number, new { minlength = 10, maxlength = 10, @type = "number", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Number)
+    </div>
+</div>
