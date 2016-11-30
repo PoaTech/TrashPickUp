@@ -102,28 +102,74 @@ namespace iTrash.Models
             query.a._AltPickupDay_ID = null;
             db.SaveChanges();
         }
-        public void SetLeaveDate(string userId)
+        public void SetSuspensionDates(string userId)
         {
-            var query = (from a in db.Users
+            int leaveYear;
+            int leaveMonth;
+            int leaveDay;
+            int returnYear;
+            int returnMonth;
+            int returnDay;
+            int.TryParse(leaveDateInput.Substring(0, 4), out leaveYear);
+            int.TryParse(leaveDateInput.Substring(6, 2), out leaveMonth);
+            int.TryParse(leaveDateInput.Substring(8, 2), out leaveDay);
+            int.TryParse(returnDateInput.Substring(0, 4), out returnYear);
+            int.TryParse(returnDateInput.Substring(6, 2), out returnMonth);
+            int.TryParse(returnDateInput.Substring(8, 2), out returnDay);
+            var user = (from a in db.Users
                          where a.Id == userId
                          select new { a }).Single();
-            query.a._LeaveDate_ID = CreateDate();
+            user.a._LeaveDate_ID = CreateDate(leaveYear, leaveMonth, leaveDay);
+            user.a._ReturnDate_ID = CreateDate(returnYear, returnMonth, returnDay);
             db.SaveChanges();
         }
-        public int? CreateDate()
+        public int? CreateDate(int year, int month, int day)
         {
-            if(CheckDate())
+            int.TryParse(leaveDateInput.Substring(0, 4), out year);
+            int.TryParse(leaveDateInput.Substring(6, 2), out month);
+            int.TryParse(leaveDateInput.Substring(9, 2), out day);
+            if (CheckDate(year,month,day))
             {
-                var query = (from a in db.Users
-                             where a.Id == userId
-                             select new { a }).Single();
-                query.a._LeaveDate_ID = CreateDate();
+                var date = (from a in db.Date
+                             where a._Day == day && a._Month == month && year == ((
+                             from b in db.Year
+                             where b._Year == year
+                             select new { b }).Single().b._Year)
+                             select new { a._ID }).Single();
+                return date._ID;
+            }
+            else
+            {
+                var query = (from a in db.Year
+                             where a._Year == year
+                             select new { a });
+                if (query.Count() == 0)
+                {
+                    Year newYear = new Year();
+                    newYear._Year = year;
+                    db.Year.Add(newYear);
+                    db.SaveChanges();
+                }
+                Date newDate = new Date();
+                newDate._Day = day;
+                newDate._Month = month;
+                newDate._Year = (from a in db.Year
+                                 where a._Year == year
+                                 select new { a }).Single().a._Year;
+                db.Date.Add(newDate);
+                db.SaveChanges();
+                return newDate._ID;
             }
         }
-        public bool CheckDate()
+        public bool CheckDate(int year, int month, int day)
         {
-            var query = from a in db.Date
-                        where a._Day = 
+            var query = (from a in db.Date
+                        where a._Day == day && a._Month == month && year == ((
+                        from b in db.Year
+                        where b._Year == year
+                        select new { a }).Single().a._Year)
+                        select new { a._ID });
+            return (query.Count() == 0);
         }
         public DateTime GetDate(int? dateId)
         {

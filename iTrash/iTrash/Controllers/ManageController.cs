@@ -373,6 +373,10 @@ namespace iTrash.Controllers
             {
                 model.RemoveAltPickupDate(userId);
             }
+            if (model.leaveDateInput != null && model.returnDateInput != null)
+            {
+                model.SetSuspensionDates(userId);
+            }
             return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()
