@@ -271,6 +271,11 @@ namespace iTrash.Models
                          select new { a }).Single();
             user = query.a;
             role = user.role;
+            GetRoutes();
+        }
+        public void GetRoutes()
+        {
+
         }
     }
 
