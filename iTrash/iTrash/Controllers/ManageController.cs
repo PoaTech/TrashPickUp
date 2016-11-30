@@ -413,6 +413,7 @@ namespace iTrash.Controllers
             var newModel = new RouteViewModel();
             newModel.GetData(userID, db);
             newModel.route = model.truckId;
+            newModel.GetRouteInfo();
             return View(newModel);
         }
         #region Helpers

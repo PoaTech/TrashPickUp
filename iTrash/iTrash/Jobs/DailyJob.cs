@@ -120,7 +120,7 @@ namespace iTrash.Jobs
             int i = 0;
             foreach (Truck truck in db.Truck)
             {
-                if (i > pickupZipcodes.Count)
+                if (i >= pickupZipcodes.Count)
                 {
                     truck._Zipcode = null;
                 }

@@ -256,10 +256,11 @@ namespace iTrash.Models
     public class RouteViewModel
     {
         public SelectList trucks { get; set; }
-        public string truckId { get; set; }
+        public List<string> addressesOnRoute = new List<string>();
+        public int truckId { get; set; }
         public ApplicationDbContext db;
         public ApplicationUser user;
-        public string route = "";
+        public int route = 0;
         public int role;
 
         public void GetData(string userID, ApplicationDbContext db)
@@ -276,6 +277,83 @@ namespace iTrash.Models
         public void GetRoutes()
         {
 
+        }
+        public void GetRouteInfo()
+        {
+            var query = (from a in db.Truck
+                         where a._ID == route
+                         select a).Single();
+            int? truckZipcode = query._Zipcode;
+            List<string> usersOnRoute = GetUsersOnRoute(truckZipcode);
+            foreach (string user in usersOnRoute)
+            {
+                AddAddress(user);
+            }
+        }
+        public List<string> GetUsersOnRoute(int? truckZipcode)
+        {
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            List<string> usersOnRoute = new List<string>();
+            var usersId = (from b in db.Pickup
+                         select b._User).ToList();
+            foreach (string userId in usersId)
+            {
+                var user = (from a in db.Users
+                            where a.Id == userId
+                            select a).Single();
+                users.Add(user);
+            }
+            foreach (ApplicationUser user in users)
+            {
+                int zipcode = (from a in db.Address
+                               where a._ID == user._Address_ID
+                               select a._Zipcode).Single();
+                if (zipcode == truckZipcode)
+                {
+                    usersOnRoute.Add(user.Id);
+                }
+            }
+            return usersOnRoute;
+        }
+        public void AddAddress(string userId)
+        {
+
+            var user = (from a in db.Users
+                             where a.Id == userId
+                             select new { a }).Single();
+            int? addressId = user.a._Address_ID;
+            var address = (from a in db.Address
+                           where a._ID == addressId
+                           select new { a }).Single();
+            var city = (from a in db.City
+                           where a._ID == address.a._City
+                           select new { a }).Single();
+            var state = (from a in db.State
+                         where a._ID == city.a._State
+                         select new { a }).Single();
+            string formattedAddress = String.Format("{0} {1}, {2}, {3}", address.a._StreetAddress1, address.a._StreetAddress2, city.a._City, state.a._State).Replace(" ", "+");
+            addressesOnRoute.Add(formattedAddress);
+        }
+        public string GetApiLink()
+        {
+            GetRouteInfo();
+            string routeParameters = GetRouteParameters();
+            return "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDgaGKD2x4WZF367-tX6vUmF06vUXT3t4A&origin=" + routeParameters;
+        }
+        public string GetRouteParameters()
+        {
+            string start = addressesOnRoute[0];
+            string destination = addressesOnRoute[addressesOnRoute.Count - 1];
+            string waypoints = "";
+            for (int i = 1; i < addressesOnRoute.Count - 1; i++)
+            {
+                if (i != 1)
+                {
+                    waypoints += "|";
+                }
+                waypoints += addressesOnRoute[i];
+            }
+            return start + "&destination=" + destination + "&waypoints=" + waypoints;
         }
     }
 

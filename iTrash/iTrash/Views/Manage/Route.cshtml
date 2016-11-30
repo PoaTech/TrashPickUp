@@ -31,9 +31,17 @@
         <br />
         <br />
         <br />
-        @if (Model.route != "")
+        @if (Model.route != 0)
         {
-            <h1>GOOGLE API HERE MOFO</h1>
+            <div class="row">
+                <div class="col-sm-12 google-maps">
+                    <iframe
+                            
+                            frameborder="0"
+                            src=@Model.GetApiLink() allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
         }
     </div>
 }
