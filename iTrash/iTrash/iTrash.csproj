@@ -291,7 +291,6 @@
     <Compile Include="Models\Month.cs" />
     <Compile Include="Models\PaymentInfo.cs" />
     <Compile Include="Models\Pickup.cs" />
-    <Compile Include="Models\TESTRouteViewModels.cs" />
     <Compile Include="Models\ServiceTier.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Truck.cs" />
