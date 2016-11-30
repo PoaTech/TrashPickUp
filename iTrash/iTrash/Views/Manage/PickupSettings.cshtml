@@ -21,14 +21,18 @@
         <div class="row">
             <div class="col-sm-6">
                 <h2>Pickup Day:</h2>
-                <strong>@Html.DisplayFor(m => m.pickupDate)</strong>
-                <br />
-                <br />
-                <h4>@Html.CheckBoxFor(m => m.changePickupDate) Change pickup day</h4>
-                @Html.DropDownListFor(m => m.dayId, Model.days, new { @class = "form-control" })
-                <br />
+                <div class="PickupCenter">
+                    <strong>@Html.DisplayFor(m => m.pickupDate)</strong>
+                    <br />
+                    <br />
+                    <h4>@Html.CheckBoxFor(m => m.changePickupDate) Change pickup day</h4>
+                    @Html.DropDownListFor(m => m.dayId, Model.days, new { @class = "form-control" })
+                    <br />
+                </div>
                 <h2>Alternate Pickup Day:</h2>
-                <strong>@Html.DisplayFor(m => m.altPickupDate)</strong>
+                <div class="PickupCenter">
+                    <strong>@Html.DisplayFor(m => m.altPickupDate)</strong>
+                </div>
                 <br />
                 <br />
                 <div class="PickupCenter">
@@ -45,37 +49,49 @@
                     }
                 </div>
             </div>
-            <div class="col-sm-6">
-                @if (Model.user._ReturnDate_ID == null)
-                {
-                    <h2>Suspend Service:</h2>
-                    <br />
-                    <div class="input-group input-daterange PickupCenter">
-
+        <div class="col-sm-6">
+            @if (Model.user._ReturnDate_ID == null)
+            {
+                <h2>Suspend Service:</h2>
+                <br />
+                <div class="PickupCenter">
+                    <div class="input-group input-daterange">
                         <p>From: @Html.TextBoxFor(m => m.leaveDateInput, new { @class = "form-control", @type = "date" })</p>
                         <p>To: @Html.TextBoxFor(m => m.returnDateInput, new { @class = "form-control", @type = "date" })</p>
                     </div>
-                }
-                else
-                {
-                    <h2>Service Will Be Suspended:</h2>
-                    <br />
-                    <div class="input-group input-daterange PickupCenter">
+                </div>
+            }
+            else
+            {
+                <h2>Service Will Be Suspended:</h2>
+                <br />
+                <div class="PickupCenter">
+                    <div class="input-group input-daterange">
                         @Html.DisplayFor(m => m.user.returnDate)
                         <p>From: @Html.DisplayFor(m => m.leaveDate)</p>
                         <p>To: @Html.DisplayFor(m => m.returnDate)</p>
+                        <br />
+                        <h4>@Html.CheckBoxFor(m => m.removeSuspensionDates) Cancel Suspension</h4>
+                        <br />
+                        <h4>Change Dates:</h4>
+                        <br />
+                        <div class="input-group input-daterange">
+                            <p>From: @Html.TextBoxFor(m => m.leaveDateInput, new { @class = "form-control", @type = "date" })</p>
+                            <p>To: @Html.TextBoxFor(m => m.returnDateInput, new { @class = "form-control", @type = "date" })</p>
+                        </div>
                     </div>
-                }
-            </div>
-        </div>
-        <div class="row">
-            <br />
-            <br />
-            <br />
-            <br />
-            <div class="PickupCenter">
-                <input type="submit" class="btn btn-default" value="Save Changes" />
-            </div>
+                </div>
+            }
         </div>
     </div>
+    <div class="row">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="PickupCenter">
+            <input type="submit" class="btn btn-default" value="Save Changes" />
+        </div>
+    </div>
+</div>
 }

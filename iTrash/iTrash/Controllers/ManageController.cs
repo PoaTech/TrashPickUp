@@ -377,6 +377,10 @@ namespace iTrash.Controllers
             {
                 model.SetSuspensionDates(userId);
             }
+            if (model.removeSuspensionDates)
+            {
+                model.RemoveSuspensionDates(userId);
+            }
             return RedirectToAction("PickupSettings", "Manage");
         }
         public ActionResult BillingInfoSettings()

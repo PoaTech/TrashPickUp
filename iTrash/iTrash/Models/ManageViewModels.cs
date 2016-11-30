@@ -35,6 +35,7 @@ namespace iTrash.Models
     {
         public bool changeAltPickupDate { get; set; }
         public bool removeAltPickupDate { get; set; }
+        public bool removeSuspensionDates { get; set; }
         public string returnDateInput { get; set; }
         public bool changePickupDate { get; set; }
         public string leaveDateInput { get; set; }
@@ -46,7 +47,7 @@ namespace iTrash.Models
         public DateTime returnDate;
         public DateTime leaveDate;
         public string pickupDate;
-        ApplicationDbContext db;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public void GetData(string userId, ApplicationDbContext db)
         {
@@ -110,24 +111,29 @@ namespace iTrash.Models
             int returnYear;
             int returnMonth;
             int returnDay;
+            string month1 = leaveDateInput.Substring(6, 2);
             int.TryParse(leaveDateInput.Substring(0, 4), out leaveYear);
-            int.TryParse(leaveDateInput.Substring(6, 2), out leaveMonth);
+            int.TryParse(leaveDateInput.Substring(5, 2), out leaveMonth);
             int.TryParse(leaveDateInput.Substring(8, 2), out leaveDay);
             int.TryParse(returnDateInput.Substring(0, 4), out returnYear);
-            int.TryParse(returnDateInput.Substring(6, 2), out returnMonth);
+            int.TryParse(returnDateInput.Substring(5, 2), out returnMonth);
             int.TryParse(returnDateInput.Substring(8, 2), out returnDay);
-            var user = (from a in db.Users
-                         where a.Id == userId
-                         select new { a }).Single();
-            user.a._LeaveDate_ID = CreateDate(leaveYear, leaveMonth, leaveDay);
-            user.a._ReturnDate_ID = CreateDate(returnYear, returnMonth, returnDay);
-            db.SaveChanges();
+            //try
+            //{
+                var user = (from a in db.Users
+                             where a.Id == userId
+                             select new { a }).Single();
+                user.a._LeaveDate_ID = CreateDate(leaveYear, leaveMonth, leaveDay);
+                user.a._ReturnDate_ID = CreateDate(returnYear, returnMonth, returnDay);
+                db.SaveChanges();
+            //}
+            //catch
+            //{
+
+            //}
         }
         public int? CreateDate(int year, int month, int day)
         {
-            int.TryParse(leaveDateInput.Substring(0, 4), out year);
-            int.TryParse(leaveDateInput.Substring(6, 2), out month);
-            int.TryParse(leaveDateInput.Substring(9, 2), out day);
             if (CheckDate(year,month,day))
             {
                 var date = (from a in db.Date
@@ -155,7 +161,7 @@ namespace iTrash.Models
                 newDate._Month = month;
                 newDate._Year = (from a in db.Year
                                  where a._Year == year
-                                 select new { a }).Single().a._Year;
+                                 select new { a }).Single().a._ID;
                 db.Date.Add(newDate);
                 db.SaveChanges();
                 return newDate._ID;
@@ -163,39 +169,55 @@ namespace iTrash.Models
         }
         public bool CheckDate(int year, int month, int day)
         {
-            var query = (from a in db.Date
-                        where a._Day == day && a._Month == month && year == ((
-                        from b in db.Year
-                        where b._Year == year
-                        select new { a }).Single().a._Year)
-                        select new { a._ID });
-            return (query.Count() == 0);
+            try
+            {
+                var query = (from a in db.Date
+                            where a._Day == day && a._Month == month && year == ((
+                            from b in db.Year
+                            where b._Year == year
+                            select new { a }).Single().a._Year)
+                            select new { a._ID }).Single();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public DateTime GetDate(int? dateId)
         {
             var queryDay = (from a in db.CalendarDay
                             where a._ID == ((from b in db.Date
                                              where b._ID == dateId
-                                             select new { b._Day }).Single()._Day)
-                            select new { a._Day }).Single();
+                                             select new { b._Day }).FirstOrDefault()._Day)
+                            select new { a._Day }).First();
 
             var queryMonth = (from a in db.Month
                               where a._ID == ((from b in db.Date
                                                where b._ID == dateId
-                                               select new { b._Month }).Single()._Month)
-                              select new { a._Month }).Single();
+                                               select new { b._Month }).FirstOrDefault()._Month)
+                              select new { a._Month }).First();
 
             var queryYear = (from a in db.Year
                              where a._ID == ((from b in db.Date
                                               where b._ID == dateId
-                                              select new { b._Year }).Single()._Year)
-                             select new { a._Year }).Single();
+                                              select new { b._Year }).FirstOrDefault()._Year)
+                             select new { a._Year }).First();
 
             int day = queryDay._Day;
             int month = queryMonth._Month;
             int year = queryYear._Year;
 
             return new DateTime(year, month, day);
+        }
+        public void RemoveSuspensionDates(string userId)
+        {
+            var query = (from a in db.Users
+                         where a.Id == userId
+                         select new { a }).Single();
+            query.a._LeaveDate_ID = null;
+            query.a._ReturnDate_ID = null;
+            db.SaveChanges();
         }
     }
     public class BillingInfoSettingsViewModel
