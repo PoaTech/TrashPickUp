@@ -344,6 +344,7 @@ namespace iTrash.Controllers
 
             base.Dispose(disposing);
         }
+
         public ActionResult PickUpSettings()
         {
             string userID = User.Identity.GetUserId();
