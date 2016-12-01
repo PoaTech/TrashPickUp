@@ -14,6 +14,7 @@ namespace iTrash.Models
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
+        public ApplicationDbContext db;
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
@@ -24,6 +25,23 @@ namespace iTrash.Models
                          where a.Id == userId
                          select new { a }).Single();
             return (query.a.role == 1);
+        }
+        public void DisplayAddress(string userId)
+        {
+            var user = (from a in db.Users
+                        where a.Id == userId
+                        select new { a }).Single();
+            int? addressId = user.a._Address_ID;
+            var address = (from a in db.Address
+                           where a._ID == addressId
+                           select new { a }).Single();
+            var city = (from a in db.City
+                        where a._ID == address.a._City
+                        select new { a }).Single();
+            var state = (from a in db.State
+                         where a._ID == city.a._State
+                         select new { a }).Single();
+            string formattedAddress = String.Format("{0} {1}, {2}, {3}", address.a._StreetAddress1, address.a._StreetAddress2, city.a._City, state.a._State);
         }
         public void GetData(string userID, ApplicationDbContext db)
         {
@@ -47,7 +65,7 @@ namespace iTrash.Models
             user = query.a;
             role = user.role;
         }
-        public void DisplayAddress(string userID)
+        public void DisplayAddress(string userId)
         {
             var user = (from a in db.Users
                         where a.Id == userId

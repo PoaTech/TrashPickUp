@@ -2,9 +2,15 @@
 @{ 
     ViewBag.Title = "Change Address";
 }
-@using (Html.BeginForm("ChangeAddress"))
+
 <h2>@ViewBag.Title</h2>
 
+@using (Html.BeginForm("ChangeAddress", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Change Address Form</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 <div class="form-group">
     @Html.LabelFor(m => m._StreetAddress1, new { @class = "col-md-2 control-label" })
     <div class="col-md-10">
@@ -47,3 +53,7 @@
         @Html.ValidationMessageFor(m => m.Number)
     </div>
 </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
