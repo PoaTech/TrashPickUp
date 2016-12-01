@@ -111,6 +111,12 @@ namespace iTrash.Controllers
         {
             return View();
         }
+        public ActionResult ChangeAddress()
+        {
+            ChangeAddressViewModel model = new ChangeAddressViewModel();
+            model.states = new SelectList(db.State, "_ID", "_State");
+            return View();
+        }
 
         //
         // POST: /Manage/AddPhoneNumber
@@ -222,11 +228,6 @@ namespace iTrash.Controllers
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        public ActionResult ChangeAddress()
         {
             return View();
         }
