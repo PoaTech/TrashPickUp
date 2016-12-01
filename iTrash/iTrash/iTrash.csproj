@@ -279,6 +279,14 @@
     <Compile Include="Migrations\201612010009509_Added balance to users.Designer.cs">
       <DependentUpon>201612010009509_Added balance to users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612011413079_Removed Balance.cs" />
+    <Compile Include="Migrations\201612011413079_Removed Balance.Designer.cs">
+      <DependentUpon>201612011413079_Removed Balance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612011417245_Added balance.cs" />
+    <Compile Include="Migrations\201612011417245_Added balance.Designer.cs">
+      <DependentUpon>201612011417245_Added balance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -510,6 +518,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612010009509_Added balance to users.resx">
       <DependentUpon>201612010009509_Added balance to users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011413079_Removed Balance.resx">
+      <DependentUpon>201612011413079_Removed Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011417245_Added balance.resx">
+      <DependentUpon>201612011417245_Added balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

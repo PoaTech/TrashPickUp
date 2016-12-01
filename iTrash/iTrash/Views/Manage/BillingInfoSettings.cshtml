@@ -22,12 +22,15 @@
         <h2>Billing</h2>
         <hr />
     </div>
+    <br />
+    <br />
+    <p>Current balance: $@Model.balance</p>
     <br/>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_xclick-subscriptions" />
         <input type="hidden" name="business" value="Paymentprocessing@poatek.com" />
         <input type="hidden" name="item_name" value="TR@SH Bronze service tier" />
-        <input type="submit" value="Pay for TR@SH!" />
+        <input type="submit" class="btn btn-default" value="Pay for TR@SH!" />
 
         <input type="hidden" name="a1" value="0" />
         <input type="hidden" name="p1" value="7" />

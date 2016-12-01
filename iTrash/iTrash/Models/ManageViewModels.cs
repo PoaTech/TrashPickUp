@@ -155,19 +155,19 @@ namespace iTrash.Models
             int.TryParse(returnDateInput.Substring(0, 4), out returnYear);
             int.TryParse(returnDateInput.Substring(5, 2), out returnMonth);
             int.TryParse(returnDateInput.Substring(8, 2), out returnDay);
-            //try
-            //{
+            try
+            {
                 var user = (from a in db.Users
                              where a.Id == userId
                              select new { a }).Single();
                 user.a._LeaveDate_ID = CreateDate(leaveYear, leaveMonth, leaveDay);
                 user.a._ReturnDate_ID = CreateDate(returnYear, returnMonth, returnDay);
                 db.SaveChanges();
-            //}
-            //catch
-            //{
+        }
+            catch
+            {
 
-            //}
+            }
         }
         public int? CreateDate(int year, int month, int day)
         {
@@ -270,7 +270,7 @@ namespace iTrash.Models
                          select new { a }).Single();
             user = query.a;
             role = user.role;
-            //balance = user._
+            balance = user.balance;
         }
     }
     public class RouteViewModel
