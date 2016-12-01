@@ -226,6 +226,11 @@ namespace iTrash.Controllers
             return View();
         }
 
+        public ActionResult ChangeAddress()
+        {
+            return View();
+        }
+
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
