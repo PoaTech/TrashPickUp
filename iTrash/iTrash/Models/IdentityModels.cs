@@ -38,7 +38,7 @@ namespace iTrash.Models
         public int? _ReturnDate_ID { get; set; }
         public Date returnDate { get; set; }
         public int role { get; set; }
-        public int balance { get; set; }
+        public decimal balance { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
