@@ -9,7 +9,6 @@
         @if (Model.role == 0 || Model.role == 2)
         {
             <li>@Html.ActionLink("Account", "Index", "Manage")</li>
-            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
             <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
             <li class="active">@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
         }

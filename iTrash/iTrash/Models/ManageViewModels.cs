@@ -18,6 +18,7 @@ namespace iTrash.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public int role;
+        public string formattedAddress = "";
         public bool IsOnlyDriver(string userId, ApplicationDbContext db)
         {
             var query = (from a in db.Users
@@ -31,23 +32,9 @@ namespace iTrash.Models
                          where a.Id == userID
                          select new { a }).Single();
             role = query.a.role;
+            DisplayAddress(userID, db);
         }
-    }
-    public class PersonalSettingsViewModel
-    {
-        public ApplicationUser user;
-        public ApplicationDbContext db;
-        public int role;
-
-        public void GetData(string userID, ApplicationDbContext db)
-        {
-            var query = (from a in db.Users
-                         where a.Id == userID
-                         select new { a }).Single();
-            user = query.a;
-            role = user.role;
-        }
-        public void DisplayAddress(string userID)
+        public void DisplayAddress(string userId, ApplicationDbContext db)
         {
             var user = (from a in db.Users
                         where a.Id == userId
@@ -62,7 +49,7 @@ namespace iTrash.Models
             var state = (from a in db.State
                          where a._ID == city.a._State
                          select new { a }).Single();
-            string formattedAddress = String.Format("{0} {1}, {2}, {3}", address.a._StreetAddress1, address.a._StreetAddress2, city.a._City, state.a._State);
+            formattedAddress = String.Format("{0} {1}, {2}, {3}", address.a._StreetAddress1, address.a._StreetAddress2, city.a._City, state.a._State);
         }
     }
 

@@ -9,7 +9,6 @@
         @if (Model.role == 0 || Model.role == 2)
         {
             <li class="active">@Html.ActionLink("Account", "Index", "Manage")</li>
-            <li>@Html.ActionLink("Personal", "PersonalSettings", "Manage")</li>
             <li>@Html.ActionLink("Pickup", "PickupSettings", "Manage")</li>
             <li>@Html.ActionLink("Billing", "BillingInfoSettings", "Manage")</li>
         }
@@ -22,28 +21,16 @@
         <h2>Account Settings</h2>
         <hr />
     </div>
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-
-        <!-- Insert content here -->
-    </dl>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
+        <div>
+            <h4>Current Address:</h4>
+            <p>@Model.formattedAddress</p>
+            <br />
             <div class="btn btn-default">@Html.ActionLink("Change Password", "ChangePassword")</div>
             <br />
+            <br />
             <div class="btn btn-default">@Html.ActionLink("Change Address", "ChangeAddress")</div>
+            <br />
         </div>
     </div>
 </div>

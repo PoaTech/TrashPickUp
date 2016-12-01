@@ -157,14 +157,14 @@ namespace iTrash.Controllers
             if (ModelState.IsValid)
             {
                 AddressCreationModel addressCreator = new AddressCreationModel(db);
-                int addressID = addressCreator.GetAddressID (model._StreetAddress1, model._StreetAddress2, model._CityID, model._StateID, model._ZipcodeID);
+                int addressID = addressCreator.GetAddressID(model._StreetAddress1, model._StreetAddress2, model._CityID, model._StateID, model._ZipcodeID);
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, _FirstName = model._FirstName, _LastName = model._LastName, _PickupDay_ID = model._dayID, _Address_ID = addressID, PhoneNumber = model.Number, role = 0 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -175,7 +175,7 @@ namespace iTrash.Controllers
                 }
                 AddErrors(result);
             }
-            
+
             model.days = new SelectList(db.WeekDay, "_ID", "_Day");
             model.states = new SelectList(db.State, "_ID", "_State");
             // If we got this far, something failed, redisplay form

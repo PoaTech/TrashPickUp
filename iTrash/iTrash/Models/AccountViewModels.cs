@@ -91,7 +91,7 @@ namespace iTrash.Models
         public string _LastName { get; set; }
 
         [Required]
-        [Display(Name ="Street Address Line 1")]
+        [Display(Name = "Street Address Line 1")]
         public string _StreetAddress1 { get; set; }
 
         [Display(Name = "Street Address Line 2")]
@@ -109,12 +109,12 @@ namespace iTrash.Models
         [Required]
         [Display(Name = "Zipcode")]
         public int? _ZipcodeID { get; set; }
-        
+
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
-        
+
         [Display(Name = "Pickup day")]
         public int _dayID { get; set; }
         public SelectList days { get; set; }
@@ -126,7 +126,7 @@ namespace iTrash.Models
 
         public RegisterViewModel(ApplicationDbContext db)
         {
-            
+
         }
     }
 
