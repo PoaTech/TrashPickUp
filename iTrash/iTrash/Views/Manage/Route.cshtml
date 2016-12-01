@@ -34,12 +34,19 @@
         @if (Model.route != 0)
         {
             <div class="row">
-                <div class="col-sm-12 google-maps">
+                <div class="col-sm-9 google-maps">
                     <iframe
-                            
                             frameborder="0"
                             src=@Model.GetApiLink() allowfullscreen>
                     </iframe>
+                </div>
+                <div class="col-sm-3">
+                    <ul>
+                        @foreach(string address in Model.addressesOnRoute)
+                        {
+                            <li>@address.Replace("+"," ")</li>
+                        }
+                    </ul>
                 </div>
             </div>
         }

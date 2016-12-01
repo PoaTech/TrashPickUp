@@ -243,6 +243,7 @@ namespace iTrash.Models
     {
         public ApplicationUser user;
         public int role;
+        public decimal balance;
 
         public void GetData(string userID, ApplicationDbContext db)
         {
@@ -251,6 +252,7 @@ namespace iTrash.Models
                          select new { a }).Single();
             user = query.a;
             role = user.role;
+            //balance = user._
         }
     }
     public class RouteViewModel
@@ -276,7 +278,10 @@ namespace iTrash.Models
         }
         public void GetRoutes()
         {
-
+            var trucksWithRoute = (from a in db.Truck
+                      where a._Zipcode != null
+                      select a).ToList();
+            trucks = new SelectList(trucksWithRoute, "_ID", "_TruckNumber");
         }
         public void GetRouteInfo()
         {
@@ -289,6 +294,7 @@ namespace iTrash.Models
             {
                 AddAddress(user);
             }
+            addressesOnRoute = addressesOnRoute.Distinct().ToList();
         }
         public List<string> GetUsersOnRoute(int? truckZipcode)
         {
