@@ -367,22 +367,35 @@ namespace iTrash.Models
         {
             GetRouteInfo();
             string routeParameters = GetRouteParameters();
-            return "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDgaGKD2x4WZF367-tX6vUmF06vUXT3t4A&origin=" + routeParameters;
+            return routeParameters;
         }
         public string GetRouteParameters()
         {
+            string link = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDgaGKD2x4WZF367-tX6vUmF06vUXT3t4A&origin=";
             string start = addressesOnRoute[0];
             string destination = addressesOnRoute[addressesOnRoute.Count - 1];
             string waypoints = "";
-            for (int i = 1; i < addressesOnRoute.Count - 1; i++)
+            if (addressesOnRoute.Count == 1)
             {
-                if (i != 1)
-                {
-                    waypoints += "|";
-                }
-                waypoints += addressesOnRoute[i];
+                link = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDgaGKD2x4WZF367-tX6vUmF06vUXT3t4A&q=";
+                return link + start;
             }
-            return start + "&destination=" + destination + "&waypoints=" + waypoints;
+            else if (addressesOnRoute.Count == 2)
+            {
+                return link + start + "&destination=" + destination;
+            }
+            else
+            {
+                for (int i = 1; i < addressesOnRoute.Count - 1; i++)
+                {
+                    if (i != 1)
+                    {
+                        waypoints += "|";
+                    }
+                    waypoints += addressesOnRoute[i];
+                }
+                return link + start + "&destination=" + destination + "&waypoints=" + waypoints;
+            }
         }
     }
 
