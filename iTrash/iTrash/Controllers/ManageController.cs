@@ -115,7 +115,7 @@ namespace iTrash.Controllers
         {
             ChangeAddressViewModel model = new ChangeAddressViewModel();
             model.states = new SelectList(db.State, "_ID", "_State");
-            return View();
+            return View(model);
         }
 
         //
@@ -344,16 +344,7 @@ namespace iTrash.Controllers
 
             base.Dispose(disposing);
         }
-        public ActionResult PersonalSettings()
-        {
-            string userID = User.Identity.GetUserId();
-            var model = new PersonalSettingsViewModel
-            {
-
-            };
-            model.GetData(userID, db);
-            return View(model);
-        }
+        
         public ActionResult PickUpSettings()
         {
             string userID = User.Identity.GetUserId();
