@@ -36,6 +36,7 @@ namespace iTrash.Models
     public class PersonalSettingsViewModel
     {
         public ApplicationUser user;
+        public ApplicationDbContext db;
         public int role;
 
         public void GetData(string userID, ApplicationDbContext db)
@@ -45,6 +46,23 @@ namespace iTrash.Models
                          select new { a }).Single();
             user = query.a;
             role = user.role;
+        }
+        public void DisplayAddress(string userID)
+        {
+            var user = (from a in db.Users
+                        where a.Id == userId
+                        select new { a }).Single();
+            int? addressId = user.a._Address_ID;
+            var address = (from a in db.Address
+                           where a._ID == addressId
+                           select new { a }).Single();
+            var city = (from a in db.City
+                        where a._ID == address.a._City
+                        select new { a }).Single();
+            var state = (from a in db.State
+                         where a._ID == city.a._State
+                         select new { a }).Single();
+            string formattedAddress = String.Format("{0} {1}, {2}, {3}", address.a._StreetAddress1, address.a._StreetAddress2, city.a._City, state.a._State);
         }
     }
 
@@ -426,7 +444,7 @@ namespace iTrash.Models
         [Display(Name = "Zipcode")]
         public int? _ZipcodeID { get; set; }
 
-        [Required]
+        
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
